@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<style>
+  .om-rv{opacity:0;transform:translateY(40px);transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1)}
+  .om-rv.om-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){.om-rv{opacity:1;transform:none;transition:none}}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#fbfbfd">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbfbfd"/>
+    <rect x="30" y="30" width="40" height="40" fill="#5b4fd6"/>
+    <text x="50" y="57" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">IT</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body{margin:0}
+  a{color:#9a92ea;text-decoration:none}
+  a:hover{color:#c9c4ff}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+</helmet>
+
+<div style="min-height:100vh;background:#0b0b0d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column">
+
+  <nav style="display:flex;align-items:center;justify-content:space-between;max-width:1360px;width:100%;margin:0 auto;padding:22px 40px;box-sizing:border-box">
+    <a href="Portfolio Landing.dc.html" style="color:#fff;font-weight:600;font-size:19px;letter-spacing:-0.01em">← Franco Preci</a>
+    <a href="Portfolio Landing.dc.html#work" style="color:rgba(255,255,255,0.6);font-size:16px;font-weight:500">Ver todos los proyectos</a>
+  </nav>
+
+  <section style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1000px;width:100%;margin:0 auto;padding:80px 24px 120px;box-sizing:border-box">
+    <div style="font-size:13px;font-weight:600;color:#9a92ea;letter-spacing:0.08em;margin-bottom:22px">ICBC · 2025 — ACTUALIDAD</div>
+    <h1 style="font-size:clamp(56px,11vw,132px);line-height:0.98;font-weight:700;letter-spacing:-0.035em;margin:0 0 28px;background:linear-gradient(100deg,#6b5ff0,#8a80f5 40%,#c9c4ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Próximamente</h1>
+    <p style="font-size:20px;line-height:1.55;color:rgba(255,255,255,0.68);margin:0;max-width:52ch;text-wrap:pretty">El nuevo Online Banking de ICBC ya está en funcionamiento: si sos cliente, lo estás usando. Este documento con todo el proceso de diseño detrás estará listo muy pronto.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
+      <a href="Portfolio Landing.dc.html#contact" style="background:#5b4fd6;color:#fff;padding:15px 30px;border-radius:10px;font-weight:600;font-size:16px">Contactarme</a>
+      <a href="Portfolio Landing.dc.html#work" style="border:1px solid rgba(255,255,255,0.22);color:#fff;padding:15px 30px;border-radius:10px;font-weight:600;font-size:16px">Ver otros casos</a>
+    </div>
+  </section>
+
+  <footer style="max-width:1360px;width:100%;margin:0 auto;padding:28px 40px;box-sizing:border-box;font-size:13px;color:rgba(255,255,255,0.4)">© 2026 Franco Preci</footer>
+
+</div>
+
+</x-dc>
+
+</body>
+</html>

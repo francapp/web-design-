@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<style>
+  .om-rv{opacity:0;transform:translateY(40px);transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1)}
+  .om-rv.om-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){.om-rv{opacity:1;transform:none;transition:none}}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#fbfbfd">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbfbfd"/>
+    <rect x="30" y="30" width="40" height="40" fill="#5b4fd6"/>
+    <text x="50" y="57" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">P</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0}
+  a{color:#5b4fd6;text-decoration:none}
+  a:hover{color:#4a3fc0}
+  img{display:block}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+</helmet>
+
+<div style="background:#fbfbfd;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <nav style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;max-width:1360px;margin:0 auto;padding:22px 40px;background:rgba(251,251,253,0.8);backdrop-filter:blur(12px)">
+    <a href="Portfolio Landing.dc.html" style="color:#1d1d1f;font-weight:600;font-size:19px;letter-spacing:-0.01em">← Franco Preci</a>
+    <a href="Portfolio Landing.dc.html#work" style="color:#1d1d1f;font-size:16px;font-weight:500">Ver todos los proyectos</a>
+  </nav>
+
+  <section style="max-width:840px;margin:0 auto;padding:80px 24px 40px">
+    <div style="font-size:13px;font-weight:600;color:#86868b;letter-spacing:0.02em;margin-bottom:14px">PERSAT · 2024 — 2025</div>
+    <h1 style="font-size:44px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;margin:0 0 18px">Un sistema para cambiarlo todo</h1>
+    <p style="font-size:19px;line-height:1.5;color:#6e6e73;margin:0 0 32px">Persat tenía la tecnología para liderar la gestión de campo. Le faltaba diseño y una visión de producto para aprovecharla al máximo.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;padding:24px 0;border-top:1px solid #e5e5ea">
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Rol</div><div style="font-size:15px;font-weight:500">Product Designer Sr.</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Empresa</div><div style="font-size:15px;font-weight:500">Persat</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Herramientas</div><div style="font-size:15px;font-weight:500">Figma · Amplitude</div></div>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:0 24px 80px">
+    <div style="border-radius:24px;overflow:hidden">
+      <img src="assets/persat-hero-web-mobile.png" alt="Persat — home web y mobile" style="width:100%">
+    </div>
+  </section>
+
+  <section style="max-width:840px;margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:64px">
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El punto de partida</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Persat es un SaaS de gestión de campo: coordina vendedores, técnicos, logística de entregas e inspectores en calle, y usa un algoritmo de ruteo propio para optimizar sus recorridos. Cuando lo agarré, el producto tenía dos problemas al mismo tiempo, y ninguno se resolvía solo arreglando pantallas.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El primero era visual y estructural. Los seis módulos activos —clientes, rastreo satelital, mantenimiento preventivo, entregas, formularios digitales y órdenes de trabajo— se habían construido cada uno con su propia grilla, sus propios componentes y su propia lógica de interacción. No había design system, así que no había nada compartido entre pantallas: cada módulo era, en la práctica, un producto distinto adentro del mismo producto.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El segundo era de producto. No existía un criterio para decidir qué módulo priorizar para crecer, ni una forma de medir si los cambios que se lanzaban funcionaban. Se avanzaba por pedido o por intuición, sin datos que confirmaran o descartaran nada después del release.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Mi trabajo fue resolver las dos cosas a la vez: definir hacia dónde tenía que crecer el producto y cómo íbamos a medirlo, además de darle una base visual consistente. También rediseñé la web del producto, alineada al mismo sistema.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/persat-before.png" alt="Versión anterior de Persat: home de módulos y bandeja de formularios" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">La versión anterior: home de módulos y bandeja de formularios, cada uno con su propio criterio visual.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Empezar por la base: el design system</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Antes de tocar cualquier módulo, decidí resolver primero la base: diseñé el design system desde cero, de forma autónoma, definiendo componentes, estados, espaciados y patrones de interacción documentados en Figma. Lo pensé escalable desde el día uno y con soporte nativo de modo claro y oscuro, porque sabía que la app iba a seguir creciendo y que cada módulo nuevo debía apoyarse en la misma base en vez de inventar la suya. Una vez definido, lo fui llevando al resto de la aplicación, módulo por módulo.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/persat-ds-wireframes.png" alt="Wireframes y componentes del design system de Persat" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Wireframes, componentes y estados del design system.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Decidir qué construir primero</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">El roadmap sumaba módulos nuevos todo el tiempo, y esa no era una decisión que me tocara solo ejecutar en pantallas: había que definir qué construir primero. Lideré un relevamiento completo de la app, entrevistas con usuarios y un benchmark de la competencia. Con esa información evalué qué módulos podían atraer usuarios nuevos, cuáles resolvían los dolores más urgentes de los que ya estaban, y qué ofrecía el mercado que Persat todavía no. Ese trabajo, con un enfoque de design thinking, es el que definió qué mejorar primero y qué construir después, en vez de avanzar módulo por módulo por intuición.</p>
+      <div style="margin-top:28px">
+        <div style="border-radius:16px;overflow:hidden">
+          <img src="assets/persat-research.png" alt="Benchmark competitivo y citas de entrevistas con usuarios de Persat" style="width:100%">
+        </div>
+        <div style="font-size:13px;color:#86868b;margin-top:10px">Benchmark frente a competidores directos y citas de las entrevistas con vendedores, técnicos, repartidores y supervisores.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Home y módulos</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Con seis módulos activos, el punto de entrada tenía que ordenar el acceso a todos sin que ninguno compitiera por atención. Rediseñé el home como el punto de partida del sistema aplicado a un caso real, resolviendo jerarquía, densidad de información y consistencia entre web y mobile.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/persat-home-dark.png" alt="Home de Persat en modo claro y oscuro" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Vista de la home nueva en modo regular y dark mode.</div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Bandeja de entrada y tableros</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Actualicé la bandeja de entrada de formularios, uno de los módulos más usados y que los clientes más iban a valorar, organizando todo tipo de formularios por carpetas para que dejaran de vivir en flujos separados y sin relación entre sí. A partir de un análisis de cómo los equipos gestionaban ese trabajo, detecté que no tenían una forma real de llevar el proceso: terminaban recurriendo a otras aplicaciones o a pizarras manuales para no perder el hilo. Para resolverlo, sumé una vista tipo kanban dentro de la misma bandeja, que le permite a cada cliente armar su propio flujo de trabajo y controlar el avance de cada formulario sin salir de Persat.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/persat-inbox-kanban.png" alt="Bandeja de entrada y tablero kanban de Persat" style="width:100%">
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Persat IA</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Persat ya contaba con un algoritmo propio de ruteo. Junto con el equipo, evalué qué otras capacidades de IA podíamos aprovechar y cómo llevarlas a más módulos de la aplicación, para que no se quedara solo en optimizar recorridos sino que ayudara a los clientes a ser más eficientes en otras áreas del negocio. De ahí surgió un chat conversacional dentro de Persat IA: además de tirar estadísticas de forma proactiva sobre el negocio, permite hacer preguntas puntuales sobre performance y sobre cualquier otra operación dentro de la plataforma.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/persat-routing-ai.png" alt="Persat IA — ruteo y chat conversacional" style="width:100%">
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Medir para seguir mejorando</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Lanzar un cambio no era el final del trabajo. Implementé Amplitude para trackear ingresos a bandeja, formularios completados por día y distribución de cambios de estado, y así saber si cada mejora funcionaba en la realidad o solo en la teoría, antes de decidir el siguiente paso.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/persat-analytics.png" alt="Dashboards de Amplitude para Persat" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Dashboards de Amplitude con el seguimiento post-lanzamiento.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El resultado</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Persat pasó de no tener design system a tener una base consistente que hoy sostiene seis módulos activos y sigue creciendo. Desde que implementamos el nuevo sistema, la experiencia de uso mejoró de forma notable: el NPS subió 5 puntos y la cantidad de usuarios activos creció de forma sostenida. Esa mejora en la experiencia se tradujo directamente en el negocio — las ventas aumentaron 15% después de las mejoras implementadas en los módulos, en gran parte porque los clientes que ya usaban Persat empezaron a usarlo más, y eso atrajo clientes nuevos.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Aprendizajes</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Empezar por el design system en lugar de por el módulo más urgente fue la decisión más difícil de defender y la que más rindió: cada rediseño posterior costó una fracción del primero, porque ya había piezas y patrones sobre los que apoyarse.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El otro aprendizaje fue sobre el criterio para priorizar. Ordenar el roadmap con relevamiento, entrevistas y benchmark en vez de por pedido puntual cambió la conversación con el equipo: dejamos de discutir preferencias y empezamos a discutir evidencia.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Medir fue clave. Amplitude nos permitió monitorear cada cambio a medida que salía y corregir sobre la marcha, en vez de esperar al próximo release para enterarnos de un problema. Ver que los usuarios adoptaban los módulos nuevos más rápido y los usaban más fue la validación real de todo el trabajo, y lo confirmaron los números de experiencia: NPS, CSAT y CES mejoraron después del rediseño.</p>
+    </div>
+  </section>
+
+  <section style="background:#1d1d1f;color:#fff;padding:80px 24px;text-align:center">
+    <h2 style="font-size:32px;font-weight:700;letter-spacing:-0.01em;margin:0 0 24px">¿Seguimos la conversación?</h2>
+    <a href="Portfolio Landing.dc.html#contact" style="background:#5b4fd6;color:#fff;padding:14px 30px;border-radius:10px;font-weight:600;font-size:16px;display:inline-block">Contactarme</a>
+  </section>
+
+  <footer style="max-width:1120px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#86868b">
+    <span>© 2026 Franco Preci</span>
+    <a href="Portfolio Landing.dc.html#work" style="color:#86868b">Otros proyectos →</a>
+  </footer>
+
+</div>
+
+</x-dc>
+
+</body>
+</html>

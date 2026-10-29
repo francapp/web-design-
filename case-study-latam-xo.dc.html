@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<style>
+  .om-rv{opacity:0;transform:translateY(40px);transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1)}
+  .om-rv.om-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){.om-rv{opacity:1;transform:none;transition:none}}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#fbfbfd">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbfbfd"/>
+    <rect x="30" y="30" width="40" height="40" fill="#5b4fd6"/>
+    <text x="50" y="57" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">LX</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0}
+  a{color:#5b4fd6;text-decoration:none}
+  a:hover{color:#4a3fc0}
+  img{display:block}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+</helmet>
+
+<div style="background:#fbfbfd;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <nav style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;max-width:1360px;margin:0 auto;padding:22px 40px;background:rgba(251,251,253,0.8);backdrop-filter:blur(12px)">
+    <a href="Portfolio Landing.dc.html" style="color:#1d1d1f;font-weight:600;font-size:19px;letter-spacing:-0.01em">← Franco Preci</a>
+    <a href="Portfolio Landing.dc.html#work" style="color:#1d1d1f;font-size:16px;font-weight:500">Ver todos los proyectos</a>
+  </nav>
+
+  <section style="max-width:840px;margin:0 auto;padding:80px 24px 40px">
+    <div style="font-size:13px;font-weight:600;color:#86868b;letter-spacing:0.02em;margin-bottom:14px">LATAM XO · 2023 — 2024</div>
+    <h1 style="font-size:44px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;margin:0 0 18px">Construir tu app nunca fue tan rápido</h1>
+    <p style="font-size:19px;line-height:1.5;color:#6e6e73;margin:0 0 32px">La marca y la plataforma modular que le permiten a cualquier empresa lanzar su app de crypto, banking o fan engagement sin construir todo desde cero.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;padding:24px 0;border-top:1px solid #e5e5ea">
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Rol</div><div style="font-size:15px;font-weight:500">UX/UI Designer Sr.</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Empresa</div><div style="font-size:15px;font-weight:500">Latam XO</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Herramientas</div><div style="font-size:15px;font-weight:500">Figma · Illustrator · Photoshop</div></div>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:0 24px 80px">
+    <div style="border-radius:24px;overflow:hidden;background:#1d1d1f">
+      <img src="assets/latamxo-hero.png" alt="LatamXO — Build fast. Your own app." style="width:100%;display:block">
+    </div>
+  </section>
+
+  <section style="max-width:840px;margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:64px">
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El problema</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Construir un producto blockchain desde cero es lento y caro: cada empresa que quiere lanzar su propia app de crypto, banking o fan engagement termina reinventando las mismas piezas —wallet, pagos, autenticación— antes de poder mostrar algo al mercado. LatamXO necesitaba una marca y un producto que comunicaran justamente lo contrario a esa fricción: que es posible salir rápido al mercado sin resignar un producto propio y confiable.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Pensar el producto, no solo la interfaz</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Antes de diseñar cualquier pantalla participé de las conversaciones sobre qué debía ofrecer la plataforma como producto: qué verticales tenían más sentido para arrancar —wallet, crypto chat, tickets NFC, tokenización de activos—, en qué orden construirlas, y qué tenían que tener en común para que un cliente pudiera combinarlas sin que se sintieran productos distintos pegados con cinta. Esa definición de producto es la que después bajé al catálogo modular y al sistema de diseño que unifica todas las piezas.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Marca y posicionamiento</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Definí la identidad de LatamXO alrededor de una promesa simple —"Build fast. Your own app."—: no es una plantilla genérica, es una plataforma modular que cada cliente arma a su medida. El trabajo de marca tenía que sostener dos cosas a la vez: la seriedad técnica que un ecosistema financiero y blockchain exige, y la velocidad de un producto plug &amp; play.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Un catálogo de soluciones white-label</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">En vez de vender "una app", LatamXO ofrece un catálogo de soluciones que un cliente puede combinar: wallets, crypto chat, tickets NFC, tokenización de activos, y otras verticales como rewards, gaming y comunidad. Diseñé la sección de la web que comunica ese catálogo como un menú de módulos, no como una lista de features sueltas.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/latamxo-whitelabel.png" alt="Soluciones white-label de LatamXO" style="width:100%;display:block">
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El sistema de producto</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 36px">Puse el foco en que los distintos módulos se sintieran parte de un mismo sistema, aunque resolvieran cosas muy distintas entre sí: los mismos componentes, la misma jerarquía y el mismo vocabulario en las cuatro verticales que diseñé.</p>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Chat cripto</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Diseñé un chat donde se puede enviar dinero, cripto o NFTs dentro de la misma conversación, sin salir de la app.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/latamxo-chat.png" alt="Chat con envío de cripto integrado" style="width:100%;display:block">
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Wallet</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Resolví la wallet con balance multi-moneda (BTC, USDT, ARS) y exchange integrado, con las acciones principales siempre a un toque.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/latamxo-wallet.png" alt="Pantalla de wallet con balance y holdings" style="width:100%;display:block">
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Tickets NFC</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Diseñé los tickets de evento con código QR y NFC, pensados para reventa y verificación en la puerta.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/latamxo-nfc-ticket2.png" alt="Ticket de evento con código QR" style="width:100%;display:block">
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Tokenización de activos</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Armé el módulo de inversión en activos reales tokenizados —como propiedades— con seguimiento de rentas y propiedad fraccionada.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="assets/latamxo-asset2.png" alt="Tokenización de un activo inmobiliario" style="width:100%;display:block">
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El resultado</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">La plataforma ya sirve de base para más de 120 proyectos, con más de 600M en transacciones on-chain procesadas y más de 100 apps desarrolladas sobre el mismo sistema modular —de tickets NFT para eventos deportivos a juegos y experiencias de fan engagement. El sistema de diseño y el catálogo de módulos son, en gran parte, lo que le permite a LatamXO prometer una velocidad de desarrollo muy superior a construir un producto blockchain desde cero.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Aprendizajes</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Diseñar para un producto white-label cambia el criterio: no alcanza con que una pantalla funcione, tiene que seguir funcionando cuando otra marca le cambia el color, el logo y el nombre. Eso me obligó a decidir qué era estructura y qué era piel, y a resolver el sistema antes que cada pantalla.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">También fue el proyecto donde más claro vi el valor de entrar antes en la conversación de producto. Definir qué verticales tenían sentido y qué debían compartir entre sí fue lo que evitó que el catálogo terminara siendo una suma de módulos sueltos.</p>
+    </div>
+  </section>
+
+  <section style="background:#1d1d1f;color:#fff;padding:80px 24px;text-align:center">
+    <h2 style="font-size:32px;font-weight:700;letter-spacing:-0.01em;margin:0 0 24px">¿Seguimos la conversación?</h2>
+    <a href="Portfolio Landing.dc.html#contact" style="background:#5b4fd6;color:#fff;padding:14px 30px;border-radius:10px;font-weight:600;font-size:16px;display:inline-block">Contactarme</a>
+  </section>
+
+  <footer style="max-width:1120px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#86868b">
+    <span>© 2026 Franco Preci</span>
+    <a href="Portfolio Landing.dc.html#work" style="color:#86868b">Otros proyectos →</a>
+  </footer>
+
+</div>
+
+</x-dc>
+
+</body>
+</html>

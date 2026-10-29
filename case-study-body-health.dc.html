@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<style>
+  @keyframes om-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+  @supports (animation-timeline: view()){
+    @media (prefers-reduced-motion: no-preference){
+      section > *{animation:om-rise 0.75s cubic-bezier(0.22,1,0.36,1) both;animation-timeline:view();animation-range:entry 0% cover 20%}
+    }
+  }
+</style>
+
+<template id="__bundler_thumbnail" data-bg-color="#fbfbfd">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbfbfd"/>
+    <rect x="30" y="30" width="40" height="40" fill="#5b4fd6"/>
+    <text x="50" y="57" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">BH</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body{margin:0}
+  a{color:#5b4fd6;text-decoration:none}
+  a:hover{color:#4a3fc0}
+</style>
+
+</helmet>
+
+<div style="background:#fbfbfd;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <nav style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;max-width:1360px;margin:0 auto;padding:22px 40px;background:rgba(251,251,253,0.8);backdrop-filter:blur(12px)">
+    <a href="Portfolio Landing.dc.html" style="color:#1d1d1f;font-weight:600;font-size:19px;letter-spacing:-0.01em">← Franco Preci</a>
+    <a href="Portfolio Landing.dc.html#work" style="color:#1d1d1f;font-size:16px;font-weight:500">Ver todos los proyectos</a>
+  </nav>
+
+  <section style="max-width:840px;margin:0 auto;padding:80px 24px 40px">
+    <div style="font-size:13px;font-weight:600;color:#86868b;letter-spacing:0.02em;margin-bottom:14px">BODY HEALTH · NEW BHS202 · 2019 — 2024</div>
+    <h1 style="font-size:44px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;margin:0 0 18px">Un solo sistema operativo para toda una línea de equipos estéticos</h1>
+    <p style="font-size:19px;line-height:1.5;color:#6e6e73;margin:0 0 32px">Cuatro terapias, dos tamaños de pantalla y usuarias que aprendían el equipo leyendo el manual. El rediseño integral de hardware y software que unificó toda la línea, reconocido con el Sello de Buen Diseño de Argentina.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;padding:24px 0;border-top:1px solid #e5e5ea">
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Rol</div><div style="font-size:15px;font-weight:500">Product Designer Sr.</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Empresa</div><div style="font-size:15px;font-weight:500">Body Health</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Herramientas</div><div style="font-size:15px;font-weight:500">Figma · Illustrator</div></div>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:0 24px 64px">
+    <div style="border-radius:24px;overflow:hidden;height:520px;background:#f5f5f7">
+      <img src="assets/bhg-hero.png" alt="Pantallas del sistema operativo Unyque: selección de terapia, zonas del cuerpo y configuración de tratamiento" style="width:100%;height:100%;object-fit:cover;display:block">
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:0 24px 80px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
+      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">20</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">entrevistas de investigación</div></div>
+      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">32</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">pantallas diseñadas</div></div>
+      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">2</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">tamaños de pantalla (12" 16:10 y 14" 16:9)</div></div>
+      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">20</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">tests de usabilidad</div></div>
+    </div>
+  </section>
+
+  <section style="max-width:840px;margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:64px">
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Overview</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Body Health fabrica equipos de estética profesional. Para su nueva línea el objetivo no era maquillar la pantalla existente: había que repensar el gabinete, los aplicadores y el sistema operativo como un mismo producto, capaz de sostener cuatro terapias distintas —CryoFrequency, HImFU, Enygma y ReFreeze— sin que cada una se comportara como un aparato diferente.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Entré como Product Designer Sr. a cargo de la investigación y de las decisiones de producto: qué variables debía controlar el usuario, cómo se aprendía el equipo sin manual, qué tenía que ser preestablecido y qué manual, y cómo un mismo sistema podía servir a una médica esteticista y a una cosmetóloga que alquila el equipo por temporada. La UI fue la consecuencia de esas definiciones, no el punto de partida.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Empatizar</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Arranqué por escuchar a quienes ya usaban el equipo. Primero una encuesta a clientes actuales para entender qué valoraban y qué cambiarían, y después entrevistas en profundidad con usuarias y potenciales compradoras. Lo que apareció no fue un problema estético: era un problema de comprensión.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:28px">
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">50%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">no podía diferenciar niveles de importancia en la información en pantalla</div></div>
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">30%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">no encontraba la información donde la esperaba</div></div>
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">82%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">quería controlar más variables durante la terapia, incluida la zona del cuerpo</div></div>
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">75%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">recurría habitualmente al manual de usuario</div></div>
+      </div>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">Las preferencias de interfaz terminaron de ordenar el rumbo: un 70% pedía más color en pantalla, y sobre el tamaño ideal el 62% eligió 14" frente a un 26% que prefería 10" y un 12% que quería 20". Sobre qué controlar durante la sesión, el 48% quería potencia, tiempo y zona del cuerpo; el 42% tiempo y sesión; y solo un 10% se conformaba con el tiempo. Y en configuración de tratamientos apareció la tensión central del proyecto: el 50% pedía modos preestablecidos por terapia, el 38% quería controlar tantas variables como fuera posible y apenas un 12% estaba conforme con el sistema actual.</p>
+
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Definir</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">Con el material en la mesa agrupé los hallazgos en pain points concretos y los volví criterios de decisión para el resto del proyecto.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Lenguaje demasiado técnico</span>
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Sin soporte dentro del sistema</span>
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Interfaz poco intuitiva</span>
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Jerarquía de información confusa</span>
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Sin patrones estándar, difícil de aprender</span>
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Poca adaptabilidad entre tipos de usuario</span>
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Pérdida de tiempo al programar el equipo</span>
+        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Sin pantallas de servicio técnico</span>
+      </div>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">De ahí salieron dos user personas que usé como filtro en cada definición posterior.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:28px">
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px">
+          <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">Dra. Carolina Ruiz</div>
+          <div style="font-size:13px;color:#86868b;margin:4px 0 16px">39 años · CABA · médica esteticista con clínica propia</div>
+          <div style="font-size:12px;font-weight:600;color:#A16C75;letter-spacing:0.03em;margin-bottom:6px">QUIERE</div>
+          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0 0 14px">Delegar el uso del equipo en personal no médico, ofrecer tratamientos personalizados y llevar registro de las tareas de su clínica.</p>
+          <div style="font-size:12px;font-weight:600;color:#A16C75;letter-spacing:0.03em;margin-bottom:6px">LE FRUSTRA</div>
+          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0">No poder explicar el equipo fácilmente, no poder guardar programas y la falta de actualizaciones.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px">
+          <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">Gladis Rito</div>
+          <div style="font-size:13px;color:#86868b;margin:4px 0 16px">45 años · Junín · cosmetóloga, alquila el equipo</div>
+          <div style="font-size:12px;font-weight:600;color:#A4BECD;letter-spacing:0.03em;margin-bottom:6px">QUIERE</div>
+          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0 0 14px">Terapias consistentes entre sí, tratamientos rápidos y equipos intuitivos que pueda usar desde el primer día.</p>
+          <div style="font-size:12px;font-weight:600;color:#A4BECD;letter-spacing:0.03em;margin-bottom:6px">LE FRUSTRA</div>
+          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0">Perder tiempo leyendo manuales y no contar con programas inteligentes ni asistencia dentro del equipo.</p>
+        </div>
+      </div>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Con eso definí los objetivos de producto: simplificar el lenguaje técnico y permitir consultar el manual desde el propio dispositivo, reducir el tiempo de configuración, construir un sistema que sirva tanto al operador experto —con control manual— como al nuevo, con modos preestablecidos, sumar conectividad a internet para actualizaciones remotas y dejar una interfaz escalable a toda la línea, con lugar para tratamientos futuros.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Idear</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Antes de dibujar pantallas puse el foco en entender qué esperaban las usuarias que el equipo hiciera. La mayoría venía de trabajar con la línea anterior: ya tenían un modelo mental armado, gestos incorporados y una manera de nombrar las cosas. Romper eso por completo las hubiera obligado a reaprender el equipo; sostenerlo tal cual hubiera arrastrado los mismos problemas.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">La dirección fue conservar lo que ya sabían y resolver, uno por uno, los pain points detectados: lenguaje más simple, jerarquía clara, patrones reconocibles y soporte dentro del sistema. En paralelo trabajé el moodboard para definir qué queríamos que el equipo transmitiera: cercanía, precisión y tecnología amable, más cerca de un objeto de consumo —parlantes, termostatos, wearables— que de un aparato médico. Esa intención guió después la paleta, los materiales y el tratamiento de la interfaz.</p>
+      <div style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e5e5ea">
+        <img src="assets/bhg-moodboard.png" alt="Moodboard de referencias de tecnología de consumo: parlantes, termostatos y dispositivos personales" style="width:100%;display:block">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Moodboard: la percepción buscada para el equipo —cálido, preciso y familiar.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Prototipar</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Los primeros sketches los trabajé en papel junto al equipo médico y a clientes, para mapear el flujo completo antes de invertir tiempo en pantallas. Esa instancia definió el recorrido que después sostuvo todo el sistema.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:28px">
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:22px"><div style="font-size:13px;font-weight:600;color:#5b4fd6;margin-bottom:8px">01</div><div style="font-size:15px;line-height:1.45;color:#3c3c41">Seleccionar la terapia —HImFU, Enygma, CryoFrequency o ReFreeze— desde la pantalla principal</div></div>
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:22px"><div style="font-size:13px;font-weight:600;color:#5b4fd6;margin-bottom:8px">02</div><div style="font-size:15px;line-height:1.45;color:#3c3c41">Elegir zona y tipo de cuerpo con diagramas corporales frontal/posterior, masculino/femenino</div></div>
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:22px"><div style="font-size:13px;font-weight:600;color:#5b4fd6;margin-bottom:8px">03</div><div style="font-size:15px;line-height:1.45;color:#3c3c41">Configurar las variables del tratamiento: potencia, temperatura y profundidad</div></div>
+        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:22px"><div style="font-size:13px;font-weight:600;color:#5b4fd6;margin-bottom:8px">04</div><div style="font-size:15px;line-height:1.45;color:#3c3c41">Iniciar la sesión con el temporizador activo y los controles a mano</div></div>
+      </div>
+      <div style="border-radius:20px;overflow:hidden;border:1px solid #e0e0e5">
+        <img src="assets/bhg-flow.png" alt="User flow completo del dispositivo y sketches en papel de las pantallas" style="width:100%;display:block">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Del sketch en papel al flujo: terapia → zona del cuerpo → variables → sesión.</div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Grillas para dos pantallas</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Con el flujo definido bajé la estructura a los dos formatos que había que resolver en simultáneo: el equipo principal, con tablet de 14" en 16:9, y el equipo "hijo", con tablet de 12" en 16:10. Adapté la grilla entre ambos para que los componentes fueran exactamente los mismos y solo cambiara la respiración —nunca la jerarquía ni el recorrido. Esa decisión es la que después permitió que toda la línea compartiera un mismo sistema operativo.</p>
+      <div>
+        <div style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e5e5ea">
+          <img src="assets/bhg-grids.png" alt="Grillas de 6 columnas para los dos formatos: tablet 1920×1080 y tablet 1280×800" style="width:100%;display:block">
+        </div>
+        <div style="font-size:13px;color:#86868b;margin-top:10px">Seis columnas en ambos formatos: 375 px de columna y 40 px de gutter en 1920×1080, 158 px y 25 px en 1280×800.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">El design system</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Armé el sistema de componentes que sostiene las cuatro terapias: estados de iniciar y detener tratamiento, controles de sesión —temporizador, profundidad, potencia y temperatura—, diagramas corporales, tipografía, escala y las animaciones de cada interacción. Todo pensado para que sumar una terapia nueva sea ensamblar piezas existentes y no rediseñar pantallas.</p>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div>
+          <div style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e5e5ea">
+            <img src="assets/bhg-ds-components.png" alt="Componentes del design system: temporizador, temperatura, profundidad, potencia, botones y diagramas corporales" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">Componentes, estados y controles de sesión.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Testear</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Validé el sistema con 20 tests de usabilidad sobre las 32 pantallas diseñadas, en los dos tamaños de pantalla. El foco estuvo en las tareas que la investigación había marcado como críticas: configurar un tratamiento sin abrir el manual, entender la jerarquía de la pantalla de sesión y moverse entre modo preestablecido y control manual sin perder el hilo.</p>
+
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Resultado</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">La línea Unyque quedó con un sistema operativo único y consistente: las cuatro terapias comparten estructura, componentes y vocabulario, y el equipo puede sumar tratamientos futuros sin rediseñar desde cero. La misma interfaz funciona en 12" y en 14", y convive el uso experto con el modo preestablecido que pedía la mitad de las clientas.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">El proyecto —gabinetes, aplicadores e interfaz— recibió el Sello de Buen Diseño de Argentina.</p>
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <div>
+          <div>
+            <img src="assets/bhg-ui-home.png" alt="Pantalla principal del sistema Unyque con las cuatro terapias: CryoFrequency, HImFU, ReFreeze y Enygma" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">Pantalla principal: las cuatro terapias en un mismo punto de entrada.</div>
+        </div>
+        <div>
+          <div>
+            <img src="assets/bhg-ui-body-areas.png" alt="Selección de zona a tratar con diagramas corporales frontal y posterior, masculino y femenino" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">Diagramas corporales: zona y tipo de cuerpo, frontal y posterior.</div>
+        </div>
+        <div>
+          <div>
+            <img src="assets/bhg-ui-config-himfu-enygma.png" alt="Pantallas de configuración de HImFU y Enygma: potencia VAC, tejido, led, modo de uso y temporizador" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">HImFU y Enygma: cada terapia ensambla los mismos componentes con sus propias variables.</div>
+        </div>
+        <div>
+          <div>
+            <img src="assets/bhg-ui-config-refreeze-cryo.png" alt="Pantallas de configuración de ReFreeze y CryoFrequency: potencia, CryoCooling, profundidad y temporizador" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">ReFreeze y CryoFrequency: las mismas variables, la misma jerarquía, en los dos formatos de pantalla.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Aprendizajes</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El dato más incómodo de la investigación fue el más útil: la mitad de las clientas quería modos preestablecidos y casi cuatro de cada diez querían controlar todo. Resolver eso como una decisión de producto —dos modos conviviendo en un mismo flujo— en lugar de promediar preferencias fue lo que hizo escalable al sistema.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">También confirmé que en hardware el diseño no termina en la pantalla: trabajar el software junto con el gabinete y los aplicadores, y sentarme con el equipo médico desde el sketch en papel, evitó decisiones de interfaz que después no hubieran tenido dónde apoyarse físicamente.</p>
+    </div>
+
+  </section>
+
+  <section style="background:#1d1d1f;color:#fff;padding:80px 24px;text-align:center">
+    <h2 style="font-size:32px;font-weight:700;letter-spacing:-0.01em;margin:0 0 24px">¿Seguimos la conversación?</h2>
+    <a href="Portfolio Landing.dc.html#contact" style="background:#5b4fd6;color:#fff;padding:14px 30px;border-radius:10px;font-weight:600;font-size:16px;display:inline-block">Contactarme</a>
+  </section>
+
+  <footer style="max-width:1120px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#86868b">
+    <span>© 2026 Franco Preci</span>
+    <a href="Portfolio Landing.dc.html#work" style="color:#86868b">Otros proyectos →</a>
+  </footer>
+
+</div>
+
+</x-dc>
+
+</body>
+</html>
