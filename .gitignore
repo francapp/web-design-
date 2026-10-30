@@ -11,6 +11,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Archivos de exportación de herramientas
+panel-animado-lento.html
+
 # Logs
 *.log
 npm-debug.log*
