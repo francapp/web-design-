@@ -32,7 +32,10 @@
   body{margin:0}
   a{color:#5b4fd6;text-decoration:none}
   a:hover{color:#4a3fc0}
+  .bhg-panel-fallback{display:none}
+  @media(prefers-reduced-motion:reduce){.bhg-panel-video{display:none!important}.bhg-panel-fallback{display:block!important}}
 </style>
+<script>(function(){function init(){if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;var v=document.querySelector('.bhg-panel-video');if(!v)return setTimeout(init,100);if(!('IntersectionObserver' in window))return;new IntersectionObserver(function(e){if(e[0].isIntersecting)v.play().catch(function(){});else v.pause();},{threshold:0.1}).observe(v);}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})()</script>
 
 </helmet>
 
@@ -212,8 +215,6 @@
             <img src="assets/panel-poster.png" alt="Pantallas de configuración de ReFreeze y CryoFrequency: potencia, CryoCooling, profundidad y temporizador" class="bhg-panel-fallback" style="width:100%;display:none">
           </div>
           <div style="font-size:13px;color:#86868b;margin-top:10px">ReFreeze y CryoFrequency: las mismas variables, la misma jerarquía, en los dos formatos de pantalla.</div>
-          <style>@media(prefers-reduced-motion:reduce){.bhg-panel-video{display:none!important}.bhg-panel-fallback{display:block!important}}</style>
-          <script>(function(){if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;var v=document.querySelector('.bhg-panel-video');if(!v||!('IntersectionObserver' in window))return;new IntersectionObserver(function(e){e[0].isIntersecting?v.play():v.pause();},{threshold:0.25}).observe(v);})()</script>
         </div>
       </div>
     </div>
