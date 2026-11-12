@@ -191,7 +191,11 @@
       <div style="display:flex;flex-direction:column;gap:20px">
         <div>
           <div style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e5e5ea">
-            <img src="assets/bhg-ds-components.png" alt="Componentes del design system: temporizador, temperatura, profundidad, potencia, botones y diagramas corporales" style="width:100%;display:block">
+            <video class="bhg-panel-video" poster="assets/panel-poster.png" autoplay muted loop playsinline preload="auto" style="width:100%;display:block">
+              <source src="assets/panel-animado-lento.webm" type="video/webm">
+              <source src="assets/panel-animado-lento.mp4" type="video/mp4">
+            </video>
+            <img src="assets/bhg-ds-components.png" alt="Componentes del design system: temporizador, temperatura, profundidad, potencia, botones y diagramas corporales" class="bhg-panel-fallback" style="width:100%;display:none">
           </div>
           <div style="font-size:13px;color:#86868b;margin-top:10px">Componentes, estados y controles de sesión.</div>
         </div>
@@ -229,11 +233,7 @@
         </div>
         <div>
           <div>
-            <video class="bhg-panel-video" poster="assets/panel-poster.png" autoplay muted loop playsinline preload="auto" style="width:100%;display:block">
-              <source src="assets/panel-animado-lento.webm" type="video/webm">
-              <source src="assets/panel-animado-lento.mp4" type="video/mp4">
-            </video>
-            <img src="assets/panel-poster.png" alt="Pantallas de configuración de ReFreeze y CryoFrequency: potencia, CryoCooling, profundidad y temporizador" class="bhg-panel-fallback" style="width:100%;display:none">
+            <img src="assets/bhg-ui-config-refreeze-cryo.png" alt="Pantallas de configuración de ReFreeze y CryoFrequency: potencia, CryoCooling, profundidad y temporizador" style="width:100%;display:block">
           </div>
           <div style="font-size:13px;color:#86868b;margin-top:10px">ReFreeze y CryoFrequency: las mismas variables, la misma jerarquía, en los dos formatos de pantalla.</div>
         </div>
