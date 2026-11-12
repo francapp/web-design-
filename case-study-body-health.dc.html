@@ -35,7 +35,28 @@
   .bhg-panel-fallback{display:none}
   @media(prefers-reduced-motion:reduce){.bhg-panel-video{display:none!important}.bhg-panel-fallback{display:block!important}}
 </style>
-<script>(function(){function init(){if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;var v=document.querySelector('.bhg-panel-video');if(!v)return setTimeout(init,100);if(!('IntersectionObserver' in window))return;new IntersectionObserver(function(e){if(e[0].isIntersecting)v.play().catch(function(){});else v.pause();},{threshold:0.1}).observe(v);}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})()</script>
+<script>(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var attempts=0;
+  function tryPlay(v){
+    v.muted=true;v.defaultMuted=true;v.playsInline=true;
+    v.play().catch(function(e){console.warn('bhg video play falló',e);});
+  }
+  function attachObserver(v){
+    if(!('IntersectionObserver' in window))return;
+    new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting)v.play().catch(function(e){console.warn('bhg video play falló',e);});
+      else v.pause();
+    },{threshold:0.1}).observe(v);
+  }
+  function init(){
+    var v=document.querySelector('.bhg-panel-video');
+    if(!v){if(attempts++<50)setTimeout(init,200);return;}
+    tryPlay(v);
+    attachObserver(v);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})()</script>
 
 </helmet>
 
@@ -208,7 +229,7 @@
         </div>
         <div>
           <div>
-            <video class="bhg-panel-video" poster="assets/panel-poster.png" loop muted playsinline style="width:100%;display:block">
+            <video class="bhg-panel-video" poster="assets/panel-poster.png" autoplay muted loop playsinline preload="auto" style="width:100%;display:block">
               <source src="assets/panel-animado-lento.webm" type="video/webm">
               <source src="assets/panel-animado-lento.mp4" type="video/mp4">
             </video>
