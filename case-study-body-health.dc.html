@@ -132,6 +132,72 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stat-grid.pct-grid{--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}}
 :root[data-theme="dark"] .stat-grid.pct-grid{--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
 @media (max-width:480px){.stat-grid.pct-grid{grid-template-columns:minmax(0,1fr)}}
+/* ===== Definir animado (sección Definir) ===== */
+.def-pains,.def-personas{font-family:'Inter',system-ui,sans-serif}
+.def-pains{--accent:#9a6f75;--ink:#84585f;--tint:#f4eaec;--tint-2:#e6d3d6;
+  list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.def-pain{--i:0;position:relative;display:flex;align-items:center;gap:14px;min-width:0;
+  padding:14px 18px 14px 14px;background:var(--card);border:1px solid var(--line);border-radius:20px;
+  font-size:clamp(14.5px,1.35vw,16.5px);line-height:1.35;color:#23232b;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s,background .35s}
+.def-pain:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(154,111,117,.55)}
+.def-pain .n{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:var(--tint);color:var(--ink);font-size:12.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;
+  transition:background .35s,color .35s}
+.def-pain:hover .n{background:var(--accent);color:#fff}
+.def-personas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,32px)}
+.def-p{--ci:0;--accent:#9a6f75;--ink:#84585f;--accent-2:#cda9ae;--tint:#f4eaec;--tint-2:#e6d3d6;
+  position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  padding:clamp(22px,2.4vw,34px);background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.def-p.alt{--accent:#6f8fa6;--ink:#527186;--accent-2:#a9c0cf;--tint:#eaf1f6;--tint-2:#d3e1ea}
+.def-p:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 16px 34px -20px var(--accent)}
+.def-head{display:flex;align-items:center;gap:clamp(16px,2vw,24px)}
+.def-av{flex:none;display:block;width:clamp(84px,8.5vw,108px);aspect-ratio:1;border-radius:50%;overflow:hidden;
+  background:linear-gradient(160deg,var(--tint),var(--tint-2));box-shadow:inset 0 0 0 1.5px var(--tint-2)}
+.def-img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(.94)}
+.def-p h3{margin:0;font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.15;color:#1c1c22}
+.def-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.def-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;
+  background:var(--tint);color:var(--ink);font-size:12.5px;font-weight:600;line-height:1.3;white-space:nowrap}
+.def-age{display:inline-flex;height:1.3em;line-height:1.3;overflow:hidden}
+.def-age .dg{position:relative;display:block;width:.62em;height:1.3em;overflow:hidden}
+.def-age .strip{display:block;transform:translateY(calc(var(--to) * -1.3em - 13em))}
+.def-age .strip span{display:block;height:1.3em;line-height:1.3;text-align:center;font-variant-numeric:tabular-nums}
+.def-blk{margin-top:clamp(18px,2vw,26px);display:grid;grid-template-columns:30px 1fr;column-gap:14px;align-items:start}
+.def-ic{grid-row:1 / span 2;display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:var(--tint);color:var(--ink)}
+.def-ic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.def-blk h4{margin:2px 0 0;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink)}
+.def-blk p{margin:6px 0 0;font-size:clamp(15px,1.4vw,17.5px);line-height:1.5;color:#3d3d46;text-wrap:pretty}
+.def-age .strip{transition:transform calc(1.7s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--ci) * 160 + 500) * 1ms * var(--sp))}
+@keyframes def-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes def-pop{from{opacity:0;transform:scale(.4)}60%{transform:scale(1.08)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: no-preference){
+  html.def-js .def-r:not(.is-in) .def-pain,
+  html.def-js .def-r:not(.is-in) .def-p,
+  html.def-js .def-r:not(.is-in) .def-av,
+  html.def-js .def-r:not(.is-in) .def-chip,
+  html.def-js .def-r:not(.is-in) .def-blk{opacity:0}
+  html.def-js .def-r:not(.is-in) .def-age .strip{transform:translateY(0)}
+  .def-pains.is-in .def-pain{animation:def-rise calc(.7s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 90ms * var(--sp)) backwards}
+  .def-pains.is-in .def-pain .n{animation:def-pop calc(.6s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((var(--i) * 90 + 200) * 1ms * var(--sp)) backwards}
+  .def-personas.is-in .def-p{animation:def-rise calc(.9s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--ci) * 160ms * var(--sp)) backwards}
+  .def-personas.is-in .def-av{animation:def-pop calc(.7s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((var(--ci) * 160 + 250) * 1ms * var(--sp)) backwards}
+  .def-personas.is-in .def-chip{animation:def-rise calc(.5s * var(--sp)) cubic-bezier(.22,1,.36,1) calc((var(--ci) * 160 + 450 + var(--k) * 90) * 1ms * var(--sp)) backwards}
+  .def-personas.is-in .def-blk{animation:def-rise calc(.7s * var(--sp)) cubic-bezier(.22,1,.36,1) calc((var(--ci) * 160 + 800 + var(--b) * 260) * 1ms * var(--sp)) backwards}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .def-pains{--ink:#e0b4bc;--accent:#d9a3ad;--tint:#2d2226;--tint-2:#4a343a}
+  :root:not([data-theme="light"]) .def-pain,:root:not([data-theme="light"]) .def-p h3{color:#f1f1f5}
+  :root:not([data-theme="light"]) .def-blk p{color:#c9c9d2}
+  :root:not([data-theme="light"]) .def-p{--ink:#e0b4bc;--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
+  :root:not([data-theme="light"]) .def-p.alt{--ink:#a9c4d6;--accent:#8fb0c6;--accent-2:#5d7b90;--tint:#1f2a32;--tint-2:#34495a}}
+:root[data-theme="dark"] .def-pains{--ink:#e0b4bc;--accent:#d9a3ad;--tint:#2d2226;--tint-2:#4a343a}
+:root[data-theme="dark"] .def-pain,:root[data-theme="dark"] .def-p h3{color:#f1f1f5}
+:root[data-theme="dark"] .def-blk p{color:#c9c9d2}
+:root[data-theme="dark"] .def-p{--ink:#e0b4bc;--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
+:root[data-theme="dark"] .def-p.alt{--ink:#a9c4d6;--accent:#8fb0c6;--accent-2:#5d7b90;--tint:#1f2a32;--tint-2:#34495a}
+@media (max-width:760px){.def-personas{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.def-pains{grid-template-columns:minmax(0,1fr)}.def-chip{white-space:normal}}
 </style>
 <script>
 (function(){
@@ -144,6 +210,25 @@
     for(var i=0;i<grids.length;i++){
       grids[i].setAttribute('data-bound','1');
       if(io)io.observe(grids[i]);else grids[i].classList.add('is-in');
+    }
+  }
+  scan();
+  if('MutationObserver' in window){
+    new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
+  }
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('def-js');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{threshold:0.2}):null;
+  function scan(){
+    var els=document.querySelectorAll('.def-r:not([data-bound])');
+    for(var i=0;i<els.length;i++){
+      els[i].setAttribute('data-bound','1');
+      if(io)io.observe(els[i]);else els[i].classList.add('is-in');
     }
   }
   scan();
@@ -247,34 +332,64 @@
     <div>
       <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Definir</h2>
       <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">Con el material en la mesa agrupé los hallazgos en pain points concretos y los volví criterios de decisión para el resto del proyecto.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px">
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Lenguaje demasiado técnico</span>
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Sin soporte dentro del sistema</span>
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Interfaz poco intuitiva</span>
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Jerarquía de información confusa</span>
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Sin patrones estándar, difícil de aprender</span>
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Poca adaptabilidad entre tipos de usuario</span>
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Pérdida de tiempo al programar el equipo</span>
-        <span style="border:1px solid #e5e5ea;background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;color:#3c3c41">Sin pantallas de servicio técnico</span>
-      </div>
+      <ul class="def-pains def-r" style="margin-bottom:32px">
+        <li class="def-pain" style="--i:0"><span class="n">01</span>Lenguaje demasiado técnico</li>
+        <li class="def-pain" style="--i:1"><span class="n">02</span>Sin soporte dentro del sistema</li>
+        <li class="def-pain" style="--i:2"><span class="n">03</span>Interfaz poco intuitiva</li>
+        <li class="def-pain" style="--i:3"><span class="n">04</span>Jerarquía de información confusa</li>
+        <li class="def-pain" style="--i:4"><span class="n">05</span>Sin patrones estándar, difícil de aprender</li>
+        <li class="def-pain" style="--i:5"><span class="n">06</span>Poca adaptabilidad entre tipos de usuario</li>
+        <li class="def-pain" style="--i:6"><span class="n">07</span>Pérdida de tiempo al programar el equipo</li>
+        <li class="def-pain" style="--i:7"><span class="n">08</span>Sin pantallas de servicio técnico</li>
+      </ul>
       <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">De ahí salieron dos user personas que usé como filtro en cada definición posterior.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:28px">
-        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px">
-          <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">Dra. Carolina Ruiz</div>
-          <div style="font-size:13px;color:#86868b;margin:4px 0 16px">39 años · CABA · médica esteticista con clínica propia</div>
-          <div style="font-size:12px;font-weight:600;color:#A16C75;letter-spacing:0.03em;margin-bottom:6px">QUIERE</div>
-          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0 0 14px">Delegar el uso del equipo en personal no médico, ofrecer tratamientos personalizados y llevar registro de las tareas de su clínica.</p>
-          <div style="font-size:12px;font-weight:600;color:#A16C75;letter-spacing:0.03em;margin-bottom:6px">LE FRUSTRA</div>
-          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0">No poder explicar el equipo fácilmente, no poder guardar programas y la falta de actualizaciones.</p>
-        </div>
-        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px">
-          <div style="font-size:18px;font-weight:600;letter-spacing:-0.01em">Gladis Rito</div>
-          <div style="font-size:13px;color:#86868b;margin:4px 0 16px">45 años · Junín · cosmetóloga, alquila el equipo</div>
-          <div style="font-size:12px;font-weight:600;color:#A4BECD;letter-spacing:0.03em;margin-bottom:6px">QUIERE</div>
-          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0 0 14px">Terapias consistentes entre sí, tratamientos rápidos y equipos intuitivos que pueda usar desde el primer día.</p>
-          <div style="font-size:12px;font-weight:600;color:#A4BECD;letter-spacing:0.03em;margin-bottom:6px">LE FRUSTRA</div>
-          <p style="font-size:15px;line-height:1.5;color:#3c3c41;margin:0">Perder tiempo leyendo manuales y no contar con programas inteligentes ni asistencia dentro del equipo.</p>
-        </div>
+      <div class="def-personas def-r" style="margin-bottom:28px">
+        <article class="def-p" style="--ci:0">
+          <header class="def-head">
+            <span class="def-av" style="background:#f9eaef" aria-hidden="true"><img class="def-img" src="assets/avatar-carolina.jpg" alt="" width="400" height="400" loading="lazy"></span>
+            <div>
+              <h3>Dra. Carolina Ruiz</h3>
+              <div class="def-meta">
+                <span class="def-chip" style="--k:0" role="img" aria-label="39 años"><span class="def-age" aria-hidden="true"><span class="dg" style="--to:3"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:9"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>años</span>
+                <span class="def-chip" style="--k:1">CABA</span>
+                <span class="def-chip" style="--k:2">Médica esteticista con clínica propia</span>
+              </div>
+            </div>
+          </header>
+          <section class="def-blk" style="--b:0">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <h4>Quiere</h4>
+            <p>Delegar el uso del equipo en personal no médico, ofrecer tratamientos personalizados y llevar registro de las tareas de su clínica.</p>
+          </section>
+          <section class="def-blk" style="--b:1">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6v8M12 18.2v.1"/></svg></span>
+            <h4>Le frustra</h4>
+            <p>No poder explicar el equipo fácilmente, no poder guardar programas y la falta de actualizaciones.</p>
+          </section>
+        </article>
+        <article class="def-p alt" style="--ci:1">
+          <header class="def-head">
+            <span class="def-av" style="background:#dbeef9" aria-hidden="true"><img class="def-img" src="assets/avatar-gladis.jpg" alt="" width="400" height="400" loading="lazy"></span>
+            <div>
+              <h3>Gladis Rito</h3>
+              <div class="def-meta">
+                <span class="def-chip" style="--k:0" role="img" aria-label="45 años"><span class="def-age" aria-hidden="true"><span class="dg" style="--to:4"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:5"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>años</span>
+                <span class="def-chip" style="--k:1">Junín</span>
+                <span class="def-chip" style="--k:2">Cosmetóloga, alquila el equipo</span>
+              </div>
+            </div>
+          </header>
+          <section class="def-blk" style="--b:0">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <h4>Quiere</h4>
+            <p>Terapias consistentes entre sí, tratamientos rápidos y equipos intuitivos que pueda usar desde el primer día.</p>
+          </section>
+          <section class="def-blk" style="--b:1">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6v8M12 18.2v.1"/></svg></span>
+            <h4>Le frustra</h4>
+            <p>Perder tiempo leyendo manuales y no contar con programas inteligentes ni asistencia dentro del equipo.</p>
+          </section>
+        </article>
       </div>
       <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Con eso definí los objetivos de producto: simplificar el lenguaje técnico y permitir consultar el manual desde el propio dispositivo, reducir el tiempo de configuración, construir un sistema que sirva tanto al operador experto —con control manual— como al nuevo, con modos preestablecidos, sumar conectividad a internet para actualizaciones remotas y dejar una interfaz escalable a toda la línea, con lugar para tratamientos futuros.</p>
     </div>
