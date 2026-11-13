@@ -57,6 +57,85 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })()</script>
+<style>
+:root{--card:#ffffff;--line:#e5e5ea;--muted:#6e6e73;--accent:#5b4fd6;--tint:#e9e7fb;--tint-2:#cfcaf4;--sp:1}
+/* ===== Cifras animadas (Body Health) ===== */
+.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,32px);font-family:'Inter',system-ui,sans-serif}
+.stat{--ci:0;position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;
+  padding:clamp(20px,2.2vw,30px);background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.stat:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(91,79,214,.45)}
+.stat .num{display:flex;height:1em;line-height:1;font-size:clamp(44px,5vw,66px);font-weight:700;letter-spacing:-.03em;
+  color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .dg{position:relative;display:block;width:.62em;height:1em;overflow:hidden}
+.stat .strip{display:block;transform:translateY(calc(var(--to) * -1em - 10em))}
+.stat .strip span{display:block;height:1em;line-height:1;text-align:center}
+.stat .label{margin:10px 0 0;font-size:clamp(14px,1.4vw,17px);line-height:1.4;color:var(--muted);text-wrap:balance}
+.stat .viz{margin-top:auto;padding-top:18px}
+.stat .viz i{display:block}
+/* 1 · personas entrevistadas */
+.viz-people{display:grid;grid-template-columns:repeat(20,1fr);gap:4px}
+.viz-people i{aspect-ratio:1;border-radius:50%;background:var(--accent)}
+/* 2 · pantallas */
+.viz-screens{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.viz-screens i{aspect-ratio:2.2;border-radius:3px;background:var(--tint);border:1.5px solid var(--accent);position:relative}
+.viz-screens i::after{content:"";position:absolute;left:22%;right:22%;top:calc(50% - 1px);height:2px;border-radius:2px;background:var(--accent);opacity:.7}
+/* 3 · tamaños */
+.viz-sizes{display:flex;align-items:flex-end;gap:12px}
+.viz-sizes figure{margin:0;display:block}
+.viz-sizes .frame{display:flex;align-items:center;justify-content:center;border:2px solid var(--accent);border-radius:6px;background:var(--tint);position:relative;font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--accent)}
+.viz-sizes .a{width:58px;aspect-ratio:16/10}
+.viz-sizes .b{width:72px;aspect-ratio:16/9}
+/* 4 · tests (anillo de 20 marcas) */
+.viz-ring{position:relative;width:56px;height:56px}
+.viz-ring i{position:absolute;left:50%;top:50%;width:2.5px;height:8px;margin:-4px 0 0 -1.25px;border-radius:2px;
+  background:var(--accent);transform:rotate(calc(var(--k) * 18deg)) translateY(-23px)}
+.viz-ring svg{position:absolute;inset:0;margin:auto;width:20px;height:20px;fill:none;stroke:var(--accent);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.viz-ring path{stroke-dasharray:30;stroke-dashoffset:0}
+/* ----- estado inicial y animación (solo con JS y sin "reducir movimiento") ----- */
+.stat .strip{transition:transform calc(1.9s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--ci) * 140 + var(--di) * 120) * 1ms * var(--sp))}
+.viz-people i,.viz-screens i,.viz-sizes figure,.viz-ring i,.viz-ring path{
+  transition:opacity calc(.5s * var(--sp)) ease,transform calc(.6s * var(--sp)) cubic-bezier(.34,1.56,.64,1),stroke-dashoffset calc(.7s * var(--sp)) ease}
+@keyframes stat-rise{from{transform:translateY(14px)}to{transform:none}}
+@media (prefers-reduced-motion: no-preference){
+  html.stats-js .stat-grid:not(.is-in) .strip{transform:translateY(0)}
+  html.stats-js .stat-grid:not(.is-in) .stat{transform:translateY(14px)}
+  html.stats-js .stat-grid:not(.is-in) .viz-people i{opacity:0;transform:scale(.2)}
+  html.stats-js .stat-grid:not(.is-in) .viz-screens i{opacity:0;transform:translateY(8px) scale(.8)}
+  html.stats-js .stat-grid:not(.is-in) .viz-sizes figure{opacity:0;transform:translateY(10px) scale(.9)}
+  html.stats-js .stat-grid:not(.is-in) .viz-ring i{opacity:.12}
+  html.stats-js .stat-grid:not(.is-in) .viz-ring path{stroke-dashoffset:30}
+  .stat-grid.is-in .stat{animation:stat-rise calc(.9s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--ci) * 120ms * var(--sp)) backwards}
+  .viz-people i{transition-delay:calc((380 + var(--ci) * 140 + var(--k) * 42) * 1ms * var(--sp))}
+  .viz-screens i{transition-delay:calc((380 + var(--ci) * 140 + var(--k) * 30) * 1ms * var(--sp))}
+  .viz-sizes figure:nth-child(1){transition-delay:calc((420 + var(--ci) * 140) * 1ms * var(--sp))}
+  .viz-sizes figure:nth-child(2){transition-delay:calc((700 + var(--ci) * 140) * 1ms * var(--sp))}
+  .viz-ring i{transition-delay:calc((380 + var(--ci) * 140 + var(--k) * 42) * 1ms * var(--sp))}
+  .viz-ring path{transition-delay:calc((1500 + var(--ci) * 140) * 1ms * var(--sp))}
+}
+.stat-grid.reset *,.stat-grid.reset{transition:none!important}
+@media (max-width:960px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.stat-grid{grid-template-columns:minmax(0,1fr)}}
+</style>
+<script>
+(function(){
+  document.documentElement.classList.add('stats-js');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{threshold:0.35}):null;
+  function scan(){
+    var grids=document.querySelectorAll('.stat-grid:not([data-bound])');
+    for(var i=0;i<grids.length;i++){
+      grids[i].setAttribute('data-bound','1');
+      if(io)io.observe(grids[i]);else grids[i].classList.add('is-in');
+    }
+  }
+  scan();
+  if('MutationObserver' in window){
+    new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
+  }
+})();
+</script>
 
 </helmet>
 
@@ -85,11 +164,30 @@
   </section>
 
   <section style="max-width:1120px;margin:0 auto;padding:0 24px 80px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px">
-      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">20</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">entrevistas de investigación</div></div>
-      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">32</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">pantallas diseñadas</div></div>
-      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">2</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">tamaños de pantalla (12" 16:10 y 14" 16:9)</div></div>
-      <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:26px"><div style="font-size:36px;font-weight:700;letter-spacing:-0.02em;color:#5b4fd6">20</div><div style="font-size:14px;color:#6e6e73;margin-top:6px">tests de usabilidad</div></div>
+    <div class="stat-grid" id="stats">
+      <article class="stat" style="--ci:0">
+        <div class="num" role="img" aria-label="20"><span class="dg" style="--to:2;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">entrevistas de investigación</p>
+        <div class="viz viz-people" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i><i style="--k:13"></i><i style="--k:14"></i><i style="--k:15"></i><i style="--k:16"></i><i style="--k:17"></i><i style="--k:18"></i><i style="--k:19"></i></div>
+      </article>
+      <article class="stat" style="--ci:1">
+        <div class="num" role="img" aria-label="32"><span class="dg" style="--to:3;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:2;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">pantallas diseñadas</p>
+        <div class="viz viz-screens" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i></div>
+      </article>
+      <article class="stat" style="--ci:2">
+        <div class="num" role="img" aria-label="2"><span class="dg" style="--to:2;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">tamaños de pantalla (12" 16:10 y 14" 16:9)</p>
+        <div class="viz viz-sizes" aria-hidden="true">
+          <figure><span class="frame a">12"</span></figure>
+          <figure><span class="frame b">14"</span></figure>
+        </div>
+      </article>
+      <article class="stat" style="--ci:3">
+        <div class="num" role="img" aria-label="20"><span class="dg" style="--to:2;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">tests de usabilidad</p>
+        <div class="viz viz-ring" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i><i style="--k:13"></i><i style="--k:14"></i><i style="--k:15"></i><i style="--k:16"></i><i style="--k:17"></i><i style="--k:18"></i><i style="--k:19"></i><svg viewBox="0 0 26 26"><path d="M5 13.5l5.5 5.5L21 7.5"/></svg></div>
+      </article>
     </div>
   </section>
 
