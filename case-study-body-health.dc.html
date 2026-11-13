@@ -154,7 +154,8 @@
 .def-p:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 16px 34px -20px var(--accent)}
 .def-head{display:flex;align-items:center;gap:clamp(16px,2vw,24px)}
 .def-av{flex:none;display:block;width:clamp(84px,8.5vw,108px);aspect-ratio:1;border-radius:50%;overflow:hidden;
-  background:linear-gradient(160deg,var(--tint),var(--tint-2));box-shadow:inset 0 0 0 1.5px var(--tint-2)}
+  background:linear-gradient(160deg,var(--tint),var(--tint-2));box-shadow:inset 0 0 0 1.5px var(--tint-2);position:relative}
+.def-av::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(60,60,72,.2)}
 .def-img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(.94)}
 .def-p h3{margin:0;font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.15;color:#1c1c22}
 .def-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
@@ -196,6 +197,8 @@
 :root[data-theme="dark"] .def-blk p{color:#c9c9d2}
 :root[data-theme="dark"] .def-p{--ink:#e0b4bc;--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
 :root[data-theme="dark"] .def-p.alt{--ink:#a9c4d6;--accent:#8fb0c6;--accent-2:#5d7b90;--tint:#1f2a32;--tint-2:#34495a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .def-av::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}}
+:root[data-theme="dark"] .def-av::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
 @media (max-width:760px){.def-personas{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:480px){.def-pains{grid-template-columns:minmax(0,1fr)}.def-chip{white-space:normal}}
 </style>
@@ -352,7 +355,7 @@
               <div class="def-meta">
                 <span class="def-chip" style="--k:0" role="img" aria-label="39 años"><span class="def-age" aria-hidden="true"><span class="dg" style="--to:3"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:9"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>años</span>
                 <span class="def-chip" style="--k:1">CABA</span>
-                <span class="def-chip" style="--k:2">Médica esteticista con clínica propia</span>
+                <span class="def-chip" style="--k:2">Médica esteticista</span>
               </div>
             </div>
           </header>
