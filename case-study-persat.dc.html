@@ -151,6 +151,86 @@
   })();
 })();
 </script>
+<style>
+:root{--card:#ffffff;--line:#e4e4ec;--muted:#6b6b73;--accent:#5b4fd6;--tint:#e9e7fb;--tint-2:#cfcaf4;--sp:1}
+.pp-wrap{container-type:inline-size;container-name:ppwrap;width:100%}
+.pp{--gap:clamp(14px,2vw,32px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);font-family:'Inter',system-ui,sans-serif}
+.pp-c{--i:0;position:relative;display:flex;flex-direction:column;min-width:0;padding:clamp(20px,2.2vw,30px);
+  background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.pp-c:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(91,79,214,.45)}
+.pp-h{margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;letter-spacing:-.025em;line-height:1.1;color:var(--accent);text-wrap:balance}
+.pp-t{margin:10px 0 0;font-size:clamp(14px,1.4vw,17px);line-height:1.4;color:var(--muted);text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
+.pp-v{margin-top:auto;padding-top:18px}
+/* 1 · seis módulos, cada uno con su propia grilla */
+.v-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.v-mods i{display:grid;gap:2px;padding:4px;aspect-ratio:1.5;border-radius:7px;background:var(--tint);border:1.5px solid var(--tint-2)}
+.v-mods b{display:block;border-radius:2px;background:var(--accent);opacity:.6}
+.g1{grid-template-columns:1fr 1fr;grid-template-rows:4px 1fr}.g1 b:first-child{grid-column:1/3}
+.g2{grid-template-columns:2fr 1fr}.g2 b:first-child{grid-row:1/3}
+.g3{grid-template-rows:repeat(3,1fr)}
+.g4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.g5{grid-template-rows:repeat(3,3px);align-content:center}.g5 b:nth-child(2){width:65%}
+.g6{grid-template-rows:repeat(4,1fr)}.g6 b{opacity:.4}.g6 b:first-child{opacity:.8}
+/* 2 · qué módulo priorizar (el foco salta y no se decide) */
+.v-pick{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.v-pick i{display:block;padding:7px 4px;border-radius:99px;background:var(--tint);border:1.5px solid transparent;text-align:center;
+  font-style:normal;font-size:10.5px;font-weight:600;line-height:1.2;color:var(--accent);white-space:nowrap}
+/* 3 · design system vacío */
+.v-ds{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.v-ds i{aspect-ratio:1;border-radius:9px;border:1.5px dashed var(--tint-2)}
+.v-ds i:nth-child(3n){border-radius:50%}
+.v-ds i:nth-child(4n){border-radius:99px;aspect-ratio:2.2;grid-column:span 2}
+/* 4 · lanzamientos sin resultado medido */
+.v-met svg{display:block;width:100%;height:auto;overflow:visible}
+.v-met .ax{fill:none;stroke:var(--tint-2);stroke-width:2;stroke-linecap:round}
+.v-met .st{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:2.5 4;stroke-linecap:round;opacity:.7}
+.v-met .rl{fill:var(--accent)}
+.v-met .em{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-dasharray:3 3.2;opacity:.9}
+.v-met text{fill:var(--accent);font:700 9px 'Inter',system-ui,sans-serif;text-anchor:middle}
+.v-met g{transform-box:fill-box;transform-origin:center}
+/* animación al entrar (solo con JS y sin "reducir movimiento") */
+@keyframes pp-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pp-pop{from{opacity:0;transform:scale(.5)}60%{transform:scale(1.08)}to{opacity:1;transform:none}}
+@keyframes pp-hop{0%{background:var(--accent);color:#fff}16.66%,100%{background:var(--tint);color:var(--accent)}}
+@media (prefers-reduced-motion: no-preference){
+  html.pp-js .pp:not(.is-in) .pp-c{opacity:0}
+  html.pp-js .pp:not(.is-in) :is(.v-mods i,.v-ds i){opacity:0}
+  html.pp-js .pp:not(.is-in) .v-pick i{opacity:0}
+  html.pp-js .pp:not(.is-in) .v-met .rl,html.pp-js .pp:not(.is-in) .v-met .qq{opacity:0}
+  html.pp-js .pp:not(.is-in) .v-met .st{stroke-dashoffset:60;opacity:0}
+  .pp.is-in .pp-c{animation:pp-rise calc(.8s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 140ms * var(--sp)) backwards}
+  .pp.is-in .v-mods i{animation:pp-pop calc(.55s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((420 + var(--k) * 120) * 1ms * var(--sp)) backwards}
+  .pp.is-in .v-pick i{animation:pp-rise calc(.5s * var(--sp)) ease calc((600 + var(--k) * 90) * 1ms * var(--sp)) backwards, pp-hop calc(7.2s * var(--sp)) steps(1,end) calc((1500 + var(--k) * 1200) * 1ms * var(--sp)) infinite}
+  .pp.is-in .v-ds i{animation:pp-rise calc(.5s * var(--sp)) ease calc((640 + var(--k) * 70) * 1ms * var(--sp)) backwards}
+  .v-met .rl,.v-met .qq{transition:opacity .4s ease calc((500 + var(--k) * 330) * 1ms * var(--sp))}
+  .v-met .st{transition:stroke-dashoffset calc(.7s * var(--sp)) ease calc((750 + var(--k) * 330) * 1ms * var(--sp)),opacity .3s ease calc((750 + var(--k) * 330) * 1ms * var(--sp))}
+  .pp.is-in .v-met .qq{animation:pp-pop calc(.5s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((1300 + var(--k) * 330) * 1ms * var(--sp)) backwards}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}}
+:root[data-theme="dark"]{--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}
+@media (max-width:960px){.pp{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.pp{grid-template-columns:minmax(0,1fr)}}
+@container ppwrap (max-width:940px){.pp{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container ppwrap (max-width:460px){.pp{grid-template-columns:minmax(0,1fr)}}
+</style>
+<script>
+(function(){
+  document.documentElement.classList.add('pp-js');
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  },{threshold:0.3}) : null;
+  function scan(){
+    var els = document.querySelectorAll('.pp:not([data-bound])');
+    for(var i=0;i<els.length;i++){
+      els[i].setAttribute('data-bound','1');
+      if(io) io.observe(els[i]); else els[i].classList.add('is-in');
+    }
+  }
+  scan();
+  if('MutationObserver' in window){ new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true}); }
+})();
+</script>
 </helmet>
 
 <div style="background:#fbfbfd;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
@@ -180,10 +260,22 @@
   <section style="max-width:840px;margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:64px">
     <div>
       <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El punto de partida</h2>
-      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Persat es un SaaS de gestión de campo: coordina vendedores, técnicos, logística de entregas e inspectores en calle, y usa un algoritmo de ruteo propio para optimizar sus recorridos. Cuando lo agarré, el producto tenía dos problemas al mismo tiempo, y ninguno se resolvía solo arreglando pantallas.</p>
-      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El primero era visual y estructural. Los seis módulos activos —clientes, rastreo satelital, mantenimiento preventivo, entregas, formularios digitales y órdenes de trabajo— se habían construido cada uno con su propia grilla, sus propios componentes y su propia lógica de interacción. No había design system, así que no había nada compartido entre pantallas: cada módulo era, en la práctica, un producto distinto adentro del mismo producto.</p>
-      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El segundo era de producto. No existía un criterio para decidir qué módulo priorizar para crecer, ni una forma de medir si los cambios que se lanzaban funcionaban. Se avanzaba por pedido o por intuición, sin datos que confirmaran o descartaran nada después del release.</p>
-      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Mi trabajo fue resolver las dos cosas a la vez: definir hacia dónde tenía que crecer el producto y cómo íbamos a medirlo, además de darle una base visual consistente. También rediseñé la web del producto, alineada al mismo sistema.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Persat es un SaaS de gestión de campo: coordina vendedores, técnicos, logística de entregas e inspectores en calle, y usa un algoritmo de ruteo propio para optimizar sus recorridos. Cuando llegué, el producto tenía dos problemas al mismo tiempo, uno visual y otro de producto, y ninguno se resolvía solo arreglando pantallas.</p>
+      <div class="pp-wrap" style="margin-bottom:28px"><div class="pp pp-r">
+        <article class="pp-c" style="--i:0"><h3 class="pp-h">Grilla</h3>
+          <p class="pp-t">6 módulos activos, cada uno construido con su propia grilla y su propia lógica</p>
+          <div class="pp-v v-mods" aria-hidden="true"><i class="g1" style="--k:0"><b></b><b></b><b></b></i><i class="g2" style="--k:1"><b></b><b></b><b></b></i><i class="g3" style="--k:2"><b></b><b></b><b></b></i><i class="g4" style="--k:3"><b></b><b></b><b></b><b></b></i><i class="g5" style="--k:4"><b></b><b></b><b></b></i><i class="g6" style="--k:5"><b></b><b></b><b></b><b></b></i></div></article>
+        <article class="pp-c" style="--i:1"><h3 class="pp-h">Producto</h3>
+          <p class="pp-t">Qué módulo mejorar primero para tener más impacto, sin un criterio para decidirlo</p>
+          <div class="pp-v v-pick" aria-hidden="true"><i style="--k:0">Clientes</i><i style="--k:1">Rastreo</i><i style="--k:2">Mantenimiento</i><i style="--k:3">Entregas</i><i style="--k:4">Formularios</i><i style="--k:5">Órdenes</i></div></article>
+        <article class="pp-c" style="--i:2"><h3 class="pp-h">Design system</h3>
+          <p class="pp-t">No había design system: nada compartido entre pantallas</p>
+          <div class="pp-v v-ds" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i></div></article>
+        <article class="pp-c" style="--i:3"><h3 class="pp-h">Métricas</h3>
+          <p class="pp-t">Sin forma de medir si los cambios que se lanzaban funcionaban</p>
+          <div class="pp-v v-met" aria-hidden="true"><svg viewBox="0 0 200 66"><path class="ax" d="M4 56H196"/><g style="--k:0"><line class="st" x1="22" y1="52" x2="22" y2="22"/><circle class="rl" cx="22" cy="56" r="4"/><g class="qq"><circle class="em" cx="22" cy="14" r="9"/><text x="22" y="17.3">?</text></g></g><g style="--k:1"><line class="st" x1="59" y1="52" x2="59" y2="22"/><circle class="rl" cx="59" cy="56" r="4"/><g class="qq"><circle class="em" cx="59" cy="14" r="9"/><text x="59" y="17.3">?</text></g></g><g style="--k:2"><line class="st" x1="96" y1="52" x2="96" y2="22"/><circle class="rl" cx="96" cy="56" r="4"/><g class="qq"><circle class="em" cx="96" cy="14" r="9"/><text x="96" y="17.3">?</text></g></g><g style="--k:3"><line class="st" x1="133" y1="52" x2="133" y2="22"/><circle class="rl" cx="133" cy="56" r="4"/><g class="qq"><circle class="em" cx="133" cy="14" r="9"/><text x="133" y="17.3">?</text></g></g><g style="--k:4"><line class="st" x1="170" y1="52" x2="170" y2="22"/><circle class="rl" cx="170" cy="56" r="4"/><g class="qq"><circle class="em" cx="170" cy="14" r="9"/><text x="170" y="17.3">?</text></g></g></svg></div></article>
+      </div></div>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Se avanzaba por pedido o por intuición, sin datos que confirmaran o descartaran nada después del release. Mi trabajo fue resolver las dos cosas a la vez: definir hacia dónde tenía que crecer el producto y cómo íbamos a medirlo, además de darle una base visual consistente. También rediseñé la web del producto, alineada al mismo sistema.</p>
       <div style="border-radius:20px;overflow:hidden">
         <img src="assets/persat-before.png" alt="Versión anterior de Persat: home de módulos y bandeja de formularios" style="width:100%">
       </div>
