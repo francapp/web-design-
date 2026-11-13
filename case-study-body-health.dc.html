@@ -201,7 +201,7 @@
 :root[data-theme="dark"] .def-av::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
 @media (max-width:760px){.def-personas{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:480px){.def-pains{grid-template-columns:minmax(0,1fr)}.def-chip{white-space:normal}}
-/* ===== Prototipar animado (sección Prototipar) ===== */
+.flow-wrap{container-type:inline-size;container-name:flowwrap;width:100%}
 .flow{--pad:clamp(20px,2.2vw,30px);--gap:clamp(14px,2vw,32px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);
   list-style:none;margin:0;padding:0;font-family:'Inter',system-ui,sans-serif;counter-reset:s}
 .flow-s{--i:0;position:relative;display:flex;flex-direction:column;min-width:0;padding:var(--pad);
@@ -213,18 +213,21 @@
 .flow-n .dg{position:relative;display:block;width:.62em;height:1em;overflow:hidden}
 .flow-n .strip{display:block;transform:translateY(calc(var(--to) * -1em - 10em))}
 .flow-n .strip span{display:block;height:1em;line-height:1;text-align:center}
-.flow-t{margin:10px 0 0;font-size:clamp(14px,1.4vw,17px);line-height:1.4;color:var(--muted);text-wrap:balance}
+.flow-t{margin:10px 0 0;font-size:clamp(14px,1.4vw,17px);line-height:1.4;color:var(--muted);text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
 .flow-v{margin-top:auto;padding-top:18px}
+/* conector entre pasos: va del número de un paso al número del siguiente */
 .flow-l{position:relative;flex:1;height:2px;min-width:0}
 .flow-l i,.flow-l b{position:absolute;left:0;top:0;height:2px;border-radius:2px;width:calc(100% + var(--pad) * 2 + var(--gap) - 14px)}
 .flow-l i{background:var(--tint-2)}
 .flow-l b{background:linear-gradient(90deg,var(--accent),#8b82ec);transform-origin:left;transform:scaleX(1);transition:transform calc(.7s * var(--sp)) cubic-bezier(.22,1,.36,1)}
 .flow-s:last-child .flow-l{visibility:hidden}
+/* 1 · terapias */
 .v-thr{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .v-thr i{position:relative;aspect-ratio:1;border-radius:12px;background:var(--tint);border:1.5px solid transparent;transition:transform .5s cubic-bezier(.34,1.56,.64,1),border-color .4s,background .4s}
 .v-thr i::after{content:"";position:absolute;left:28%;right:28%;top:calc(50% - 1px);height:2px;border-radius:2px;background:var(--accent);opacity:.45}
 .v-thr i.pick{border-color:var(--accent);background:#fff}
 .v-thr i.pick::after{opacity:1}
+/* 2 · cuerpo */
 .v-body{display:flex;gap:14px;align-items:flex-end}
 .v-body svg{height:74px;width:auto;overflow:visible}
 .v-body .b{fill:var(--tint);stroke:var(--tint-2);stroke-width:1.5}
@@ -232,10 +235,12 @@
 .v-body .tg{display:flex;flex-direction:column;gap:6px;margin-left:auto;align-self:center}
 .v-body .tg i{display:block;width:34px;height:8px;border-radius:99px;background:var(--tint)}
 .v-body .tg i.on{background:var(--accent)}
+/* 3 · variables */
 .v-var{display:grid;gap:13px}
 .v-var span{position:relative;display:block;height:6px;border-radius:99px;background:var(--tint)}
 .v-var b{position:absolute;left:0;top:0;bottom:0;width:calc(var(--v) * 1%);border-radius:99px;background:linear-gradient(90deg,#8b82ec,var(--accent))}
 .v-var b::after{content:"";position:absolute;right:-6px;top:-4px;width:14px;height:14px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);box-sizing:border-box}
+/* 4 · temporizador */
 .v-tim{display:flex;align-items:center;gap:14px}
 .v-tim svg{width:66px;height:66px;flex:none}
 .v-tim .rg{fill:none;stroke:var(--tint);stroke-width:6}
@@ -245,6 +250,7 @@
 .v-tim .ct i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--tint)}
 .v-tim .ct i::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--accent)}
 .v-tim .ct i:first-child::before{width:10px;height:11px;border-radius:1px;background:linear-gradient(90deg,var(--accent) 36%,transparent 36%,transparent 64%,var(--accent) 64%)}
+/* animación al entrar (solo con JS y sin "reducir movimiento") */
 @keyframes flow-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes flow-pop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
 @keyframes flow-pulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.12);opacity:.55}}
@@ -256,7 +262,8 @@
   html.flow-js .flow:not(.is-in) .v-var b{width:0}
   html.flow-js .flow:not(.is-in) .v-tim .pg{stroke-dashoffset:138}
   html.flow-js .flow:not(.is-in) .v-body .z{opacity:0}
-  .flow.is-in .flow-s{animation:flow-rise calc(.8s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 260ms * var(--sp)) backwards;--d:calc(var(--i) * 260ms * var(--sp))}
+  .flow.is-in .flow-s{animation:flow-rise calc(.8s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 260ms * var(--sp)) backwards;
+    --d:calc(var(--i) * 260ms * var(--sp))}
   .flow-n .strip{transition:transform calc(1.7s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--i) * 260 + 120 + var(--di) * 110) * 1ms * var(--sp))}
   .flow-l b{transition-delay:calc((var(--i) * 260 + 650) * 1ms * var(--sp))}
   .v-thr i.pick{transition-delay:calc(var(--i) * 260ms * var(--sp) + 700ms)}
@@ -265,10 +272,15 @@
   .v-body .z{transition:opacity .6s ease calc(var(--i) * 260ms * var(--sp) + 700ms)}
   .flow.is-in .v-body .z{animation:flow-pulse 2.4s ease-in-out calc(var(--i) * 260ms * var(--sp) + 1400ms) infinite}
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .v-thr i.pick{background:#14141a}:root:not([data-theme="light"]) .v-var b::after{background:#14141a}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--ink:#f1f1f5;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}
+  :root:not([data-theme="light"]) .v-thr i.pick{background:#14141a}:root:not([data-theme="light"]) .v-var b::after{background:#14141a}}
+:root[data-theme="dark"]{--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--ink:#f1f1f5;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}
 :root[data-theme="dark"] .v-thr i.pick,:root[data-theme="dark"] .v-var b::after{background:#14141a}
 @media (max-width:960px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-l{display:none}}
 @media (max-width:480px){.flow{grid-template-columns:minmax(0,1fr)}}
+/* según el ancho real del contenedor (no de la ventana): 4 -> 2 -> 1 columnas */
+@container flowwrap (max-width:940px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-l{display:none}}
+@container flowwrap (max-width:460px){.flow{grid-template-columns:minmax(0,1fr)}}
 </style>
 <script>
 (function(){
@@ -495,7 +507,7 @@
     <div>
       <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Prototipar</h2>
       <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Los primeros sketches los trabajé en papel junto al equipo médico y a clientes, para mapear el flujo completo antes de invertir tiempo en pantallas. Esa instancia definió el recorrido que después sostuvo todo el sistema.</p>
-      <ol class="flow flow-r" style="margin-bottom:28px">
+      <div class="flow-wrap" style="margin-bottom:28px"><ol class="flow flow-r">
         <li class="flow-s" style="--i:0"><div class="flow-h"><span class="flow-n" role="img" aria-label="01"><span class="dg" style="--to:0;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:1;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span><span class="flow-l" aria-hidden="true"><i></i><b></b></span></div>
           <p class="flow-t">Seleccionar la terapia —HImFU, Enygma, CryoFrequency o ReFreeze— desde la pantalla principal</p>
           <div class="flow-v v-thr" aria-hidden="true"><i></i><i class="pick"></i><i></i><i></i></div></li>
@@ -513,7 +525,7 @@
           <div class="flow-v v-tim" aria-hidden="true">
             <svg viewBox="0 0 66 66"><circle class="rg" cx="33" cy="33" r="22"/><circle class="pg" cx="33" cy="33" r="22"/><path class="pl" d="M29 25.5v15l12-7.5z"/></svg>
             <div class="ct"><i></i><i></i></div></div></li>
-      </ol>
+      </ol></div>
       <div style="border-radius:20px;overflow:hidden;border:1px solid #e0e0e5">
         <img src="assets/bhg-flow.png" alt="User flow completo del dispositivo y sketches en papel de las pantallas" style="width:100%;display:block">
       </div>
