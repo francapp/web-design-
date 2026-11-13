@@ -116,6 +116,22 @@
 .stat-grid.reset *,.stat-grid.reset{transition:none!important}
 @media (max-width:960px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:480px){.stat-grid{grid-template-columns:minmax(0,1fr)}}
+/* ===== Porcentajes animados (Empatizar) · reutiliza .stat-grid / .stat / .num del bloque de cifras ===== */
+.stat-grid.pct-grid{--accent:#9a6f75;--accent-2:#cda9ae;--tint:#f4eaec;--tint-2:#e6d3d6;grid-template-columns:repeat(2,minmax(0,1fr))}
+.pct-grid .sym{display:block;height:1em;line-height:1;letter-spacing:-.03em}
+.pct-grid .label{max-width:34ch}
+.viz-bar .track{position:relative;display:block;height:10px;border-radius:999px;background:var(--tint);overflow:hidden}
+.viz-bar .fill{position:absolute;left:0;top:0;bottom:0;width:calc(var(--pct) * 1%);border-radius:999px;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  transition:width calc(1.9s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--ci) * 140 + 120) * 1ms * var(--sp))}
+.viz-bar .track::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 2px),var(--card) calc(25% - 2px),var(--card) 25%)}
+@media (prefers-reduced-motion: no-preference){
+  html.stats-js .pct-grid:not(.is-in) .viz-bar .fill{width:0}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stat-grid.pct-grid{--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}}
+:root[data-theme="dark"] .stat-grid.pct-grid{--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
+@media (max-width:480px){.stat-grid.pct-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 <script>
 (function(){
@@ -202,11 +218,27 @@
     <div>
       <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Empatizar</h2>
       <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Arranqué por escuchar a quienes ya usaban el equipo. Primero una encuesta a clientes actuales para entender qué valoraban y qué cambiarían, y después entrevistas en profundidad con usuarias y potenciales compradoras. Lo que apareció no fue un problema estético: era un problema de comprensión.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:28px">
-        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">50%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">no podía diferenciar niveles de importancia en la información en pantalla</div></div>
-        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">30%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">no encontraba la información donde la esperaba</div></div>
-        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">82%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">quería controlar más variables durante la terapia, incluida la zona del cuerpo</div></div>
-        <div style="background:#fff;border:1px solid #e5e5ea;border-radius:20px;padding:24px"><div style="font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#A16C75">75%</div><div style="font-size:14px;line-height:1.45;color:#6e6e73;margin-top:6px">recurría habitualmente al manual de usuario</div></div>
+      <div class="stat-grid pct-grid" style="margin-bottom:28px">
+        <article class="stat" style="--ci:0">
+          <div class="num" role="img" aria-label="50%"><span class="dg" style="--to:5;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">no podía diferenciar niveles de importancia en la información en pantalla</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:50"></i></span></div>
+        </article>
+        <article class="stat" style="--ci:1">
+          <div class="num" role="img" aria-label="30%"><span class="dg" style="--to:3;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">no encontraba la información donde la esperaba</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:30"></i></span></div>
+        </article>
+        <article class="stat" style="--ci:2">
+          <div class="num" role="img" aria-label="82%"><span class="dg" style="--to:8;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:2;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">quería controlar más variables durante la terapia, incluida la zona del cuerpo</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:82"></i></span></div>
+        </article>
+        <article class="stat" style="--ci:3">
+          <div class="num" role="img" aria-label="75%"><span class="dg" style="--to:7;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:5;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">recurría habitualmente al manual de usuario</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:75"></i></span></div>
+        </article>
       </div>
       <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">Las preferencias de interfaz terminaron de ordenar el rumbo: un 70% pedía más color en pantalla, y sobre el tamaño ideal el 62% eligió 14" frente a un 26% que prefería 10" y un 12% que quería 20". Sobre qué controlar durante la sesión, el 48% quería potencia, tiempo y zona del cuerpo; el 42% tiempo y sesión; y solo un 10% se conformaba con el tiempo. Y en configuración de tratamientos apareció la tensión central del proyecto: el 50% pedía modos preestablecidos por terapia, el 38% quería controlar tantas variables como fuera posible y apenas un 12% estaba conforme con el sistema actual.</p>
 
