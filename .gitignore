@@ -26,3 +26,4 @@ npm-debug.log*
 # Dependencies (por si se agrega tooling después)
 node_modules/
 integracion-persat-inicio.html
+integracion-persat-bench.html
