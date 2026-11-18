@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,9 @@
 <body>
 <x-dc>
 <helmet data-dc-atomics>
+<link rel="alternate" hreflang="es" href="https://francopreci.com/case-study-persat.dc.html">
+<link rel="alternate" hreflang="en" href="https://francopreci.com/en/case-study-persat.dc.html">
+<link rel="alternate" hreflang="x-default" href="https://francopreci.com/case-study-persat.dc.html">
 <style>
   .om-rv{opacity:0;transform:translateY(40px);transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1)}
   .om-rv.om-in{opacity:1;transform:none}
@@ -333,13 +336,63 @@
   if('MutationObserver' in window){ new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true}); }
 })();
 </script>
+<style>
+/* ===== Switch de idioma (gris, segmentado) ===== */
+:root{--lg-track:#eeeef1;--lg-thumb:#ffffff;--lg-ink:#1c1c22;--lg-mut:#6b6b73}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--lg-track:#26262d;--lg-thumb:#3a3a44;--lg-ink:#f1f1f5;--lg-mut:#a9a9b3}}
+:root[data-theme="dark"]{--lg-track:#26262d;--lg-thumb:#3a3a44;--lg-ink:#f1f1f5;--lg-mut:#a9a9b3}
+.lg{--p:0;position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:999px;background:var(--lg-track);isolation:isolate;font-family:'Inter',system-ui,sans-serif;flex:none}
+html[lang^="en"] .lg{--p:1}
+.lg::before{content:"";position:absolute;z-index:-1;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--lg-thumb);
+  box-shadow:0 1px 3px rgba(0,0,0,.14),0 0 0 1px rgba(0,0,0,.04);transform:translateX(calc(var(--p) * 100%));transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.lg a{text-align:center;padding:6px 13px;font-size:12.5px;font-weight:700;letter-spacing:.04em;line-height:1.2;color:var(--lg-mut);text-decoration:none;border-radius:999px;transition:color .3s}
+.lg a[aria-current="true"],.lg.is-sw a[aria-current="true"]{color:var(--lg-ink)}
+.lg.is-sw a{color:var(--lg-mut)}
+.lg a:focus-visible{outline:2px solid var(--lg-ink);outline-offset:2px}
+</style>
+<script>
+(function(){
+  function counterpart(target){
+    var p=location.pathname,inEn=/^\/en(\/|$)/.test(p);
+    var base=inEn?p.replace(/^\/en/,'')||'/':p;
+    var dest=target==='en'?'/en'+(base==='/'?'/':base):base;
+    return dest+location.search+location.hash;
+  }
+  function wire(){
+    document.querySelectorAll('.lg a[data-lang]').forEach(function(a){
+      a.setAttribute('href',counterpart(a.getAttribute('data-lang')));
+    });
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.lg a[data-lang]');
+    if(!a)return;
+    var lang=a.getAttribute('data-lang');
+    try{localStorage.setItem('fp-lang',lang);}catch(_){}
+    if(a.getAttribute('aria-current')==='true'){e.preventDefault();return;}
+    e.preventDefault();
+    var box=a.closest('.lg');box.classList.add('is-sw');box.style.setProperty('--p',lang==='en'?1:0);
+    setTimeout(function(){location.href=a.getAttribute('href');},260);
+  });
+  try{
+    var saved=localStorage.getItem('fp-lang');
+    if(!saved&&/^\/(index\.html)?$/.test(location.pathname)&&/^en/i.test(navigator.language||'')){
+      localStorage.setItem('fp-lang','en');location.replace('/en/');
+    }else if(!saved){localStorage.setItem('fp-lang',/^\/en(\/|$)/.test(location.pathname)?'en':'es');}
+  }catch(_){}
+  wire();
+  if('MutationObserver' in window){new MutationObserver(wire).observe(document.documentElement,{childList:true,subtree:true});}
+})();
+</script>
 </helmet>
 
 <div style="background:#fbfbfd;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
 
   <nav style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;max-width:1360px;margin:0 auto;padding:22px 40px;background:rgba(251,251,253,0.8);backdrop-filter:blur(12px)">
     <a href="Portfolio Landing.dc.html" style="color:#1d1d1f;font-weight:600;font-size:19px;letter-spacing:-0.01em">← Franco Preci</a>
-    <a href="Portfolio Landing.dc.html#work" style="color:#1d1d1f;font-size:16px;font-weight:500">Ver todos los proyectos</a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="Portfolio Landing.dc.html#work" style="color:#1d1d1f;font-size:16px;font-weight:500">Ver todos los proyectos</a>
+      <div class="lg" role="group" aria-label="Idioma / Language"><a href="/en/" data-lang="es" lang="es" aria-current="true">ES</a><a href="/en/" data-lang="en" lang="en">EN</a></div>
+    </div>
   </nav>
 
   <section style="max-width:840px;margin:0 auto;padding:80px 24px 40px">

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="alternate" hreflang="es" href="https://francopreci.com/case-study-persat.dc.html">
+<link rel="alternate" hreflang="en" href="https://francopreci.com/en/case-study-persat.dc.html">
+<link rel="alternate" hreflang="x-default" href="https://francopreci.com/case-study-persat.dc.html">
+<style>
+  .om-rv{opacity:0;transform:translateY(40px);transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1)}
+  .om-rv.om-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){.om-rv{opacity:1;transform:none;transition:none}}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#fbfbfd">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbfbfd"/>
+    <rect x="30" y="30" width="40" height="40" fill="#5b4fd6"/>
+    <text x="50" y="57" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">P</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0}
+  a{color:#5b4fd6;text-decoration:none}
+  a:hover{color:#4a3fc0}
+  img{display:block}
+</style>
+<script>
+(function () {
+  if (window.__omCaseBoot) return;
+  window.__omCaseBoot = true;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var shown = new Set(), order = new Map(), io = null, booted = false;
+
+  function nodeList() {
+    return Array.from(document.querySelectorAll('section > *')).filter(function (n) { return n.tagName !== 'SCRIPT'; });
+  }
+  function index(n) {
+    var p = n.parentElement;
+    var i = p ? (order.get(p) || 0) : 0;
+    if (p) order.set(p, i + 1);
+    var cs = p ? getComputedStyle(p) : null;
+    var row = cs && (cs.display === 'grid' || (cs.display === 'flex' && cs.flexDirection.indexOf('row') === 0));
+    n.dataset.revealIndex = row ? String(i) : '0';
+    n.classList.add('om-rv');
+  }
+  function reveal(n) {
+    if (shown.has(n)) return;
+    shown.add(n);
+    var d = Math.min(Number(n.dataset.revealIndex || 0), 5) * 140;
+    setTimeout(function () { n.classList.add('om-in'); }, d);
+  }
+  function sweep() {
+    var cut = window.innerHeight * 0.75;
+    nodeList().forEach(function (n) {
+      if (n.dataset.revealIndex === undefined) { index(n); if (io) io.observe(n); }
+      if (shown.has(n) || n.classList.contains('om-in')) return;
+      if (n.getBoundingClientRect().top < cut) { reveal(n); if (io) io.unobserve(n); }
+    });
+  }
+  function start() {
+    var nodes = nodeList();
+    if (!nodes.length) return false;
+    booted = true;
+    nodes.forEach(index);
+    io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        reveal(e.target);
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0 });
+    nodes.forEach(function (n) { io.observe(n); });
+    nodes.forEach(function (n) {
+      if (n.getBoundingClientRect().top < window.innerHeight * 0.92) { reveal(n); io.unobserve(n); }
+    });
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    setInterval(sweep, 700);
+    return true;
+  }
+  var tries = 0;
+  (function tick() {
+    if (!booted && !start() && ++tries < 120) return setTimeout(tick, 100);
+  })();
+})();
+</script>
+<style>
+:root{--card:#ffffff;--line:#e4e4ec;--muted:#6b6b73;--accent:#5b4fd6;--tint:#e9e7fb;--tint-2:#cfcaf4;--sp:1}
+.pp-wrap{container-type:inline-size;container-name:ppwrap;width:100%}
+.pp{--gap:clamp(14px,2vw,32px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);font-family:'Inter',system-ui,sans-serif}
+.pp-c{--i:0;position:relative;display:flex;flex-direction:column;min-width:0;padding:clamp(20px,2.2vw,30px);
+  background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.pp-c:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(91,79,214,.45)}
+.pp-h{margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;letter-spacing:-.025em;line-height:1.1;color:var(--accent);text-wrap:balance}
+.pp-t{margin:10px 0 0;font-size:clamp(14px,1.4vw,17px);line-height:1.4;color:var(--muted);text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
+.pp-v{margin-top:auto;padding-top:18px}
+/* 1 · seis módulos, cada uno con su propia grilla */
+.v-mods{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.v-mods i{display:grid;gap:2px;padding:4px;aspect-ratio:1.5;border-radius:7px;background:var(--tint);border:1.5px solid var(--tint-2)}
+.v-mods b{display:block;border-radius:2px;background:var(--accent);opacity:.6}
+.g1{grid-template-columns:1fr 1fr;grid-template-rows:4px 1fr}.g1 b:first-child{grid-column:1/3}
+.g2{grid-template-columns:2fr 1fr}.g2 b:first-child{grid-row:1/3}
+.g3{grid-template-rows:repeat(3,1fr)}
+.g4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.g5{grid-template-rows:repeat(3,3px);align-content:center}.g5 b:nth-child(2){width:65%}
+.g6{grid-template-rows:repeat(4,1fr)}.g6 b{opacity:.4}.g6 b:first-child{opacity:.8}
+/* 2 · qué módulo priorizar (el foco salta y no se decide) */
+.v-pick{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.v-pick i{display:block;padding:7px 4px;border-radius:99px;background:var(--tint);border:1.5px solid transparent;text-align:center;
+  font-style:normal;font-size:10.5px;font-weight:600;line-height:1.2;color:var(--accent);white-space:nowrap}
+/* 3 · design system vacío */
+.v-ds{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.v-ds i{aspect-ratio:1;border-radius:9px;border:1.5px dashed var(--tint-2)}
+.v-ds i:nth-child(3n){border-radius:50%}
+.v-ds i:nth-child(4n){border-radius:99px;aspect-ratio:2.2;grid-column:span 2}
+/* 4 · lanzamientos sin resultado medido */
+.v-met svg{display:block;width:100%;height:auto;overflow:visible}
+.v-met .ax{fill:none;stroke:var(--tint-2);stroke-width:2;stroke-linecap:round}
+.v-met .st{stroke:var(--accent);stroke-width:1.6;stroke-dasharray:2.5 4;stroke-linecap:round;opacity:.7}
+.v-met .rl{fill:var(--accent)}
+.v-met .em{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-dasharray:3 3.2;opacity:.9}
+.v-met text{fill:var(--accent);font:700 9px 'Inter',system-ui,sans-serif;text-anchor:middle}
+.v-met g{transform-box:fill-box;transform-origin:center}
+/* animación al entrar (solo con JS y sin "reducir movimiento") */
+@keyframes pp-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pp-pop{from{opacity:0;transform:scale(.5)}60%{transform:scale(1.08)}to{opacity:1;transform:none}}
+@keyframes pp-hop{0%{background:var(--accent);color:#fff}16.66%,100%{background:var(--tint);color:var(--accent)}}
+@media (prefers-reduced-motion: no-preference){
+  html.pp-js .pp:not(.is-in) .pp-c{opacity:0}
+  html.pp-js .pp:not(.is-in) :is(.v-mods i,.v-ds i){opacity:0}
+  html.pp-js .pp:not(.is-in) .v-pick i{opacity:0}
+  html.pp-js .pp:not(.is-in) .v-met .rl,html.pp-js .pp:not(.is-in) .v-met .qq{opacity:0}
+  html.pp-js .pp:not(.is-in) .v-met .st{stroke-dashoffset:60;opacity:0}
+  .pp.is-in .pp-c{animation:pp-rise calc(.8s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 140ms * var(--sp)) backwards}
+  .pp.is-in .v-mods i{animation:pp-pop calc(.55s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((420 + var(--k) * 120) * 1ms * var(--sp)) backwards}
+  .pp.is-in .v-pick i{animation:pp-rise calc(.5s * var(--sp)) ease calc((600 + var(--k) * 90) * 1ms * var(--sp)) backwards, pp-hop calc(7.2s * var(--sp)) steps(1,end) calc((1500 + var(--k) * 1200) * 1ms * var(--sp)) infinite}
+  .pp.is-in .v-ds i{animation:pp-rise calc(.5s * var(--sp)) ease calc((640 + var(--k) * 70) * 1ms * var(--sp)) backwards}
+  .v-met .rl,.v-met .qq{transition:opacity .4s ease calc((500 + var(--k) * 330) * 1ms * var(--sp))}
+  .v-met .st{transition:stroke-dashoffset calc(.7s * var(--sp)) ease calc((750 + var(--k) * 330) * 1ms * var(--sp)),opacity .3s ease calc((750 + var(--k) * 330) * 1ms * var(--sp))}
+  .pp.is-in .v-met .qq{animation:pp-pop calc(.5s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((1300 + var(--k) * 330) * 1ms * var(--sp)) backwards}
+}
+/* Títulos que "ruedan" letra por letra, como el contador de los números */
+.pp-h .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.pp-h .wd{display:inline-block;white-space:nowrap}
+.pp-h .lt{position:relative;display:inline-block;height:1.2em;line-height:1.2;overflow:hidden;vertical-align:bottom;padding-inline:.03em;margin-inline:-.03em}
+.pp-h .sz{visibility:hidden}
+.pp-h .st2{position:absolute;left:.03em;top:0;display:flex;flex-direction:column;transform:translateY(calc(var(--n) * -1.2em));
+  transition:transform calc((.9s + var(--n) * .07s) * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--i) * 140 + 200 + var(--c) * 55) * 1ms * var(--sp))}
+.pp-h .st2>span{display:block;height:1.2em;opacity:.4}
+.pp-h .st2>span:last-child{opacity:1}
+@media (prefers-reduced-motion: no-preference){
+  html.pp-js .pp:not(.is-in) .pp-h .st2{transform:none;transition:none}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}}
+:root[data-theme="dark"]{--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}
+@media (max-width:960px){.pp{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.pp{grid-template-columns:minmax(0,1fr)}}
+@container ppwrap (max-width:940px){.pp{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container ppwrap (max-width:460px){.pp{grid-template-columns:minmax(0,1fr)}}
+</style>
+<script>
+(function(){
+  document.documentElement.classList.add('pp-js');
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  },{threshold:0.3}) : null;
+  function scan(){
+    var els = document.querySelectorAll('.pp:not([data-bound])');
+    for(var i=0;i<els.length;i++){
+      els[i].setAttribute('data-bound','1');
+      if(io) io.observe(els[i]); else els[i].classList.add('is-in');
+    }
+  }
+  scan();
+  if('MutationObserver' in window){ new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true}); }
+})();
+</script>
+<style>
+:root{--ink:#1c1c22;--tint-3:#f4f3fd}
+.bm-wrap,.qt-wrap{container-type:inline-size;width:100%;font-family:'Inter',system-ui,sans-serif}
+.bm-wrap{container-name:bmwrap}.qt-wrap{container-name:qtwrap;margin-top:clamp(20px,3vw,36px)}
+/* ===== Benchmark ===== */
+.bm{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(10px,1.6vw,18px);overflow:hidden}
+.bm-r{display:grid;grid-template-columns:minmax(150px,1.55fr) repeat(5,minmax(0,1fr));align-items:center;border-top:1px solid var(--line)}
+.bm-r.bm-hd{border-top:0}
+.bm-f{padding:clamp(12px,1.5vw,18px) clamp(8px,1vw,14px);font-size:clamp(13px,1.25vw,15.5px);font-weight:500;color:var(--ink);line-height:1.25}
+.bm-n{padding:clamp(12px,1.5vw,16px) 4px;text-align:center;font-size:clamp(12px,1.2vw,14.5px);font-weight:600;color:var(--muted);overflow-wrap:anywhere}
+.bm-c{display:flex;align-items:center;justify-content:center;padding:clamp(10px,1.3vw,14px) 4px;align-self:stretch}
+.bm .me{background:var(--tint-3);box-shadow:inset 1px 0 0 var(--tint),inset -1px 0 0 var(--tint)}
+.bm-hd .me{border-radius:18px 18px 0 0;color:var(--accent);font-weight:700;box-shadow:none;background:var(--tint)}
+.bm-ft .me{border-radius:0 0 18px 18px}
+.ok,.no{position:relative;display:grid;place-items:center;width:clamp(22px,2.3vw,28px);aspect-ratio:1;border-radius:50%;flex:none}
+.ok{background:var(--accent);color:#fff}
+.no{background:transparent;border:1.5px solid var(--tint-2);color:var(--tint-2)}
+.ok svg,.no svg{width:58%;height:58%}
+.gap .no{border-color:var(--accent);color:var(--accent);background:var(--tint)}
+.gap .no::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid var(--accent);opacity:0}
+.bm-ft .bm-f{font-size:clamp(11px,1.05vw,13px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bm-ft .bm-c{flex-direction:column;gap:6px}
+.cv{font-size:clamp(13px,1.3vw,16px);font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.me .cv{color:var(--accent)}
+.cb{display:block;width:min(70%,76px);height:6px;border-radius:99px;background:var(--tint);overflow:hidden}
+.cb i{display:block;height:100%;width:calc(var(--pct) * 1%);border-radius:99px;background:linear-gradient(90deg,var(--tint-2),var(--accent));transform-origin:left;
+  transition:transform calc(1.3s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((1300 + var(--k) * 90) * 1ms * var(--sp))}
+.bm-key{display:flex;gap:18px;flex-wrap:wrap;padding:14px clamp(8px,1vw,14px) 4px;font-size:12.5px;color:var(--muted)}
+.bm-key span{display:inline-flex;align-items:center;gap:8px}
+.bm-key .no,.bm-key .ok{width:16px}
+/* ===== Citas ===== */
+.qt-g{--gap:clamp(12px,1.6vw,22px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+.qt{--i:0;position:relative;display:flex;flex-direction:column;gap:16px;min-width:0;padding:clamp(20px,2.2vw,28px);background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.qt:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(91,79,214,.45)}
+.qt-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.qt-mark{font-family:Georgia,'Times New Roman',serif;font-size:clamp(54px,6vw,76px);line-height:.6;height:.42em;color:var(--tint-2);user-select:none}
+.qt-tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:5px 10px;border-radius:999px;background:var(--tint);color:var(--accent);white-space:nowrap}
+.qt-q{margin:0;font-size:clamp(15.5px,1.45vw,18px);line-height:1.45;font-weight:500;color:var(--ink);text-wrap:pretty;overflow-wrap:break-word}
+.qt-q b{font-weight:700;color:var(--accent)}
+.qt-by{margin-top:auto;display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+.qt-av{display:grid;place-items:center;width:40px;aspect-ratio:1;border-radius:50%;background:var(--tint);color:var(--accent);font-size:14px;font-weight:700;flex:none}
+.qt-nm{display:block;font-size:15px;font-weight:600;color:var(--ink);line-height:1.2}
+.qt-rl{display:block;margin-top:2px;font-size:13px;color:var(--muted)}
+.bm-cap{margin:14px 2px 0;font-size:14px;color:var(--muted)}
+/* ===== Animación ===== */
+@keyframes bm-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes bm-pop{from{opacity:0;transform:scale(.3)}60%{transform:scale(1.15)}to{opacity:1;transform:none}}
+@keyframes bm-ring{0%{opacity:.9;transform:scale(.8)}100%{opacity:0;transform:scale(1.5)}}
+@keyframes qt-in{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: no-preference){
+  html.bm-js .bm:not(.is-in) .bm-r{opacity:0}
+  html.bm-js .bm:not(.is-in) :is(.ok,.no){opacity:0}
+  html.bm-js .bm:not(.is-in) .cb i{transform:scaleX(0)}
+  html.bm-js .bm:not(.is-in) .bm-hd .me{background:transparent}
+  .bm.is-in .bm-r{animation:bm-rise calc(.7s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--r) * 110ms * var(--sp)) backwards}
+  .bm.is-in :is(.ok,.no){animation:bm-pop calc(.5s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((var(--r) * 110 + var(--c) * 70 + 250) * 1ms * var(--sp)) backwards}
+  .bm.is-in .gap .no::after{animation:bm-ring calc(1.4s * var(--sp)) ease-out calc((1500 + var(--r) * 200) * 1ms * var(--sp)) 2 both}
+  .bm-hd .me{transition:background .8s ease calc(150ms * var(--sp))}
+  html.bm-js .qt-g:not(.is-in) .qt{opacity:0}
+  .qt-g.is-in .qt{animation:qt-in calc(.8s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 120ms * var(--sp)) backwards}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#f1f1f5;--tint-3:#201f33}}
+:root[data-theme="dark"]{--ink:#f1f1f5;--tint-3:#201f33}
+@container bmwrap (max-width:620px){
+  .bm-r{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .bm-r .bm-f{grid-column:1/-1;padding-bottom:2px}
+  .bm-hd .bm-f{display:none}
+  .bm-r:not(.bm-hd) .bm-c{padding-top:6px}
+  .bm-n{font-size:11px;padding-inline:0}
+  .bm .me{box-shadow:none}
+  .bm-ft .bm-f{padding-bottom:0}
+}
+@container qtwrap (max-width:900px){.qt-g{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container qtwrap (max-width:560px){.qt-g{grid-template-columns:minmax(0,1fr)}}
+</style>
+<script>
+(function(){
+  document.documentElement.classList.add('bm-js');
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  },{threshold:0.2}) : null;
+  function scan(){
+    var els = document.querySelectorAll('.bm:not([data-bound]),.qt-g:not([data-bound])');
+    for(var i=0;i<els.length;i++){ els[i].setAttribute('data-bound','1'); if(io) io.observe(els[i]); else els[i].classList.add('is-in'); }
+  }
+  scan();
+  if('MutationObserver' in window){ new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true}); }
+})();
+</script>
+<style>
+/* ===== Switch de idioma (gris, segmentado) ===== */
+:root{--lg-track:#eeeef1;--lg-thumb:#ffffff;--lg-ink:#1c1c22;--lg-mut:#6b6b73}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--lg-track:#26262d;--lg-thumb:#3a3a44;--lg-ink:#f1f1f5;--lg-mut:#a9a9b3}}
+:root[data-theme="dark"]{--lg-track:#26262d;--lg-thumb:#3a3a44;--lg-ink:#f1f1f5;--lg-mut:#a9a9b3}
+.lg{--p:0;position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:999px;background:var(--lg-track);isolation:isolate;font-family:'Inter',system-ui,sans-serif;flex:none}
+html[lang^="en"] .lg{--p:1}
+.lg::before{content:"";position:absolute;z-index:-1;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--lg-thumb);
+  box-shadow:0 1px 3px rgba(0,0,0,.14),0 0 0 1px rgba(0,0,0,.04);transform:translateX(calc(var(--p) * 100%));transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.lg a{text-align:center;padding:6px 13px;font-size:12.5px;font-weight:700;letter-spacing:.04em;line-height:1.2;color:var(--lg-mut);text-decoration:none;border-radius:999px;transition:color .3s}
+.lg a[aria-current="true"],.lg.is-sw a[aria-current="true"]{color:var(--lg-ink)}
+.lg.is-sw a{color:var(--lg-mut)}
+.lg a:focus-visible{outline:2px solid var(--lg-ink);outline-offset:2px}
+</style>
+<script>
+(function(){
+  function counterpart(target){
+    var p=location.pathname,inEn=/^\/en(\/|$)/.test(p);
+    var base=inEn?p.replace(/^\/en/,'')||'/':p;
+    var dest=target==='en'?'/en'+(base==='/'?'/':base):base;
+    return dest+location.search+location.hash;
+  }
+  function wire(){
+    document.querySelectorAll('.lg a[data-lang]').forEach(function(a){
+      a.setAttribute('href',counterpart(a.getAttribute('data-lang')));
+    });
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.lg a[data-lang]');
+    if(!a)return;
+    var lang=a.getAttribute('data-lang');
+    try{localStorage.setItem('fp-lang',lang);}catch(_){}
+    if(a.getAttribute('aria-current')==='true'){e.preventDefault();return;}
+    e.preventDefault();
+    var box=a.closest('.lg');box.classList.add('is-sw');box.style.setProperty('--p',lang==='en'?1:0);
+    setTimeout(function(){location.href=a.getAttribute('href');},260);
+  });
+  try{
+    var saved=localStorage.getItem('fp-lang');
+    if(!saved&&/^\/(index\.html)?$/.test(location.pathname)&&/^en/i.test(navigator.language||'')){
+      localStorage.setItem('fp-lang','en');location.replace('/en/');
+    }else if(!saved){localStorage.setItem('fp-lang',/^\/en(\/|$)/.test(location.pathname)?'en':'es');}
+  }catch(_){}
+  wire();
+  if('MutationObserver' in window){new MutationObserver(wire).observe(document.documentElement,{childList:true,subtree:true});}
+})();
+</script>
+</helmet>
+
+<div style="background:#fbfbfd;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <nav style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;max-width:1360px;margin:0 auto;padding:22px 40px;background:rgba(251,251,253,0.8);backdrop-filter:blur(12px)">
+    <a href="Portfolio Landing.dc.html" style="color:#1d1d1f;font-weight:600;font-size:19px;letter-spacing:-0.01em">← Franco Preci</a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="Portfolio Landing.dc.html#work" style="color:#1d1d1f;font-size:16px;font-weight:500">Ver todos los proyectos</a>
+      <div class="lg" role="group" aria-label="Idioma / Language"><a href="/" data-lang="es" lang="es">ES</a><a href="/en/" data-lang="en" lang="en" aria-current="true">EN</a></div>
+    </div>
+  </nav>
+
+  <section style="max-width:840px;margin:0 auto;padding:80px 24px 40px">
+    <div style="font-size:13px;font-weight:600;color:#86868b;letter-spacing:0.02em;margin-bottom:14px">PERSAT · 2024 — 2025</div>
+    <h1 style="font-size:44px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;margin:0 0 18px">Un sistema para cambiarlo todo</h1>
+    <p style="font-size:19px;line-height:1.5;color:#6e6e73;margin:0 0 32px">Persat tenía la tecnología para liderar la gestión de campo. Le faltaba diseño y una visión de producto para aprovecharla al máximo.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;padding:24px 0;border-top:1px solid #e5e5ea">
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Rol</div><div style="font-size:15px;font-weight:500">Product Designer Sr.</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Empresa</div><div style="font-size:15px;font-weight:500">Persat</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Herramientas</div><div style="font-size:15px;font-weight:500">Figma · Amplitude</div></div>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:0 24px 80px">
+    <div style="border-radius:24px;overflow:hidden">
+      <img src="/assets/persat-hero-web-mobile.png" alt="Persat — home web y mobile" style="width:100%">
+    </div>
+  </section>
+
+  <section style="max-width:840px;margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:64px">
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El punto de partida</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Persat es un SaaS de gestión de campo: coordina vendedores, técnicos, logística de entregas e inspectores en calle, y usa un algoritmo de ruteo propio para optimizar sus recorridos. Cuando llegué, el producto tenía dos problemas al mismo tiempo, uno visual y otro de producto, y ninguno se resolvía solo arreglando pantallas.</p>
+      <div class="pp-wrap" style="margin-bottom:28px"><div class="pp pp-r">
+        <article class="pp-c" style="--i:0"><h3 class="pp-h"><span class="sr">Grilla</span><span class="rt" aria-hidden="true"><span class="wd"><span class="lt"><span class="sz">G</span><span class="st2" style="--n:7;--c:0"><span>X</span><span>L</span><span>Z</span><span>W</span><span>X</span><span>U</span><span>Q</span><span>G</span></span></span><span class="lt"><span class="sz">r</span><span class="st2" style="--n:5;--c:1"><span>o</span><span>y</span><span>h</span><span>u</span><span>b</span><span>r</span></span></span><span class="lt"><span class="sz">i</span><span class="st2" style="--n:6;--c:2"><span>d</span><span>l</span><span>p</span><span>h</span><span>m</span><span>r</span><span>i</span></span></span><span class="lt"><span class="sz">l</span><span class="st2" style="--n:5;--c:3"><span>s</span><span>h</span><span>a</span><span>x</span><span>g</span><span>l</span></span></span><span class="lt"><span class="sz">l</span><span class="st2" style="--n:8;--c:4"><span>i</span><span>f</span><span>y</span><span>m</span><span>f</span><span>y</span><span>z</span><span>c</span><span>l</span></span></span><span class="lt"><span class="sz">a</span><span class="st2" style="--n:6;--c:5"><span>t</span><span>t</span><span>o</span><span>e</span><span>e</span><span>a</span><span>a</span></span></span></span></span></h3>
+          <p class="pp-t">6 módulos activos, cada uno construido con su propia grilla y su propia lógica</p>
+          <div class="pp-v v-mods" aria-hidden="true"><i class="g1" style="--k:0"><b></b><b></b><b></b></i><i class="g2" style="--k:1"><b></b><b></b><b></b></i><i class="g3" style="--k:2"><b></b><b></b><b></b></i><i class="g4" style="--k:3"><b></b><b></b><b></b><b></b></i><i class="g5" style="--k:4"><b></b><b></b><b></b></i><i class="g6" style="--k:5"><b></b><b></b><b></b><b></b></i></div></article>
+        <article class="pp-c" style="--i:1"><h3 class="pp-h"><span class="sr">Producto</span><span class="rt" aria-hidden="true"><span class="wd"><span class="lt"><span class="sz">P</span><span class="st2" style="--n:6;--c:0"><span>V</span><span>T</span><span>L</span><span>F</span><span>R</span><span>W</span><span>P</span></span></span><span class="lt"><span class="sz">r</span><span class="st2" style="--n:6;--c:1"><span>m</span><span>j</span><span>t</span><span>n</span><span>s</span><span>s</span><span>r</span></span></span><span class="lt"><span class="sz">o</span><span class="st2" style="--n:5;--c:2"><span>x</span><span>q</span><span>r</span><span>t</span><span>x</span><span>o</span></span></span><span class="lt"><span class="sz">d</span><span class="st2" style="--n:6;--c:3"><span>x</span><span>z</span><span>m</span><span>o</span><span>h</span><span>q</span><span>d</span></span></span><span class="lt"><span class="sz">u</span><span class="st2" style="--n:6;--c:4"><span>c</span><span>z</span><span>b</span><span>w</span><span>f</span><span>t</span><span>u</span></span></span><span class="lt"><span class="sz">c</span><span class="st2" style="--n:8;--c:5"><span>q</span><span>h</span><span>w</span><span>q</span><span>q</span><span>e</span><span>p</span><span>t</span><span>c</span></span></span><span class="lt"><span class="sz">t</span><span class="st2" style="--n:8;--c:6"><span>u</span><span>p</span><span>v</span><span>c</span><span>h</span><span>t</span><span>c</span><span>k</span><span>t</span></span></span><span class="lt"><span class="sz">o</span><span class="st2" style="--n:8;--c:7"><span>w</span><span>g</span><span>q</span><span>n</span><span>x</span><span>t</span><span>n</span><span>m</span><span>o</span></span></span></span></span></h3>
+          <p class="pp-t">Qué módulo mejorar primero para tener más impacto, sin un criterio para decidirlo</p>
+          <div class="pp-v v-pick" aria-hidden="true"><i style="--k:0">Clientes</i><i style="--k:1">Rastreo</i><i style="--k:2">Mantenimiento</i><i style="--k:3">Entregas</i><i style="--k:4">Formularios</i><i style="--k:5">Órdenes</i></div></article>
+        <article class="pp-c" style="--i:2"><h3 class="pp-h"><span class="sr">Design system</span><span class="rt" aria-hidden="true"><span class="wd"><span class="lt"><span class="sz">D</span><span class="st2" style="--n:7;--c:0"><span>X</span><span>M</span><span>I</span><span>V</span><span>W</span><span>J</span><span>A</span><span>D</span></span></span><span class="lt"><span class="sz">e</span><span class="st2" style="--n:8;--c:1"><span>w</span><span>q</span><span>l</span><span>i</span><span>h</span><span>y</span><span>s</span><span>k</span><span>e</span></span></span><span class="lt"><span class="sz">s</span><span class="st2" style="--n:8;--c:2"><span>a</span><span>q</span><span>s</span><span>z</span><span>v</span><span>w</span><span>m</span><span>p</span><span>s</span></span></span><span class="lt"><span class="sz">i</span><span class="st2" style="--n:6;--c:3"><span>p</span><span>e</span><span>t</span><span>w</span><span>q</span><span>k</span><span>i</span></span></span><span class="lt"><span class="sz">g</span><span class="st2" style="--n:8;--c:4"><span>x</span><span>k</span><span>n</span><span>l</span><span>z</span><span>a</span><span>m</span><span>z</span><span>g</span></span></span><span class="lt"><span class="sz">n</span><span class="st2" style="--n:6;--c:5"><span>j</span><span>i</span><span>j</span><span>c</span><span>z</span><span>b</span><span>n</span></span></span></span> <span class="wd"><span class="lt"><span class="sz">s</span><span class="st2" style="--n:5;--c:6"><span>u</span><span>y</span><span>r</span><span>x</span><span>y</span><span>s</span></span></span><span class="lt"><span class="sz">y</span><span class="st2" style="--n:6;--c:7"><span>f</span><span>n</span><span>b</span><span>s</span><span>d</span><span>b</span><span>y</span></span></span><span class="lt"><span class="sz">s</span><span class="st2" style="--n:8;--c:8"><span>s</span><span>x</span><span>c</span><span>y</span><span>v</span><span>a</span><span>y</span><span>k</span><span>s</span></span></span><span class="lt"><span class="sz">t</span><span class="st2" style="--n:6;--c:9"><span>e</span><span>x</span><span>z</span><span>y</span><span>w</span><span>s</span><span>t</span></span></span><span class="lt"><span class="sz">e</span><span class="st2" style="--n:5;--c:10"><span>y</span><span>m</span><span>d</span><span>f</span><span>d</span><span>e</span></span></span><span class="lt"><span class="sz">m</span><span class="st2" style="--n:8;--c:11"><span>i</span><span>e</span><span>q</span><span>m</span><span>m</span><span>n</span><span>p</span><span>b</span><span>m</span></span></span></span></span></h3>
+          <p class="pp-t">No había design system: nada compartido entre pantallas</p>
+          <div class="pp-v v-ds" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i></div></article>
+        <article class="pp-c" style="--i:3"><h3 class="pp-h"><span class="sr">Métricas</span><span class="rt" aria-hidden="true"><span class="wd"><span class="lt"><span class="sz">M</span><span class="st2" style="--n:5;--c:0"><span>I</span><span>L</span><span>Q</span><span>V</span><span>B</span><span>M</span></span></span><span class="lt"><span class="sz">é</span><span class="st2" style="--n:8;--c:1"><span>f</span><span>d</span><span>z</span><span>b</span><span>j</span><span>x</span><span>f</span><span>x</span><span>é</span></span></span><span class="lt"><span class="sz">t</span><span class="st2" style="--n:6;--c:2"><span>a</span><span>n</span><span>w</span><span>z</span><span>r</span><span>l</span><span>t</span></span></span><span class="lt"><span class="sz">r</span><span class="st2" style="--n:6;--c:3"><span>y</span><span>t</span><span>h</span><span>v</span><span>d</span><span>f</span><span>r</span></span></span><span class="lt"><span class="sz">i</span><span class="st2" style="--n:6;--c:4"><span>t</span><span>o</span><span>n</span><span>k</span><span>y</span><span>u</span><span>i</span></span></span><span class="lt"><span class="sz">c</span><span class="st2" style="--n:6;--c:5"><span>q</span><span>i</span><span>r</span><span>j</span><span>c</span><span>s</span><span>c</span></span></span><span class="lt"><span class="sz">a</span><span class="st2" style="--n:8;--c:6"><span>v</span><span>q</span><span>q</span><span>w</span><span>i</span><span>u</span><span>n</span><span>k</span><span>a</span></span></span><span class="lt"><span class="sz">s</span><span class="st2" style="--n:8;--c:7"><span>r</span><span>q</span><span>l</span><span>k</span><span>h</span><span>k</span><span>d</span><span>z</span><span>s</span></span></span></span></span></h3>
+          <p class="pp-t">Sin forma de medir si los cambios que se lanzaban funcionaban</p>
+          <div class="pp-v v-met" aria-hidden="true"><svg viewBox="0 0 200 66"><path class="ax" d="M4 56H196"/><g style="--k:0"><line class="st" x1="22" y1="52" x2="22" y2="22"/><circle class="rl" cx="22" cy="56" r="4"/><g class="qq"><circle class="em" cx="22" cy="14" r="9"/><text x="22" y="17.3">?</text></g></g><g style="--k:1"><line class="st" x1="59" y1="52" x2="59" y2="22"/><circle class="rl" cx="59" cy="56" r="4"/><g class="qq"><circle class="em" cx="59" cy="14" r="9"/><text x="59" y="17.3">?</text></g></g><g style="--k:2"><line class="st" x1="96" y1="52" x2="96" y2="22"/><circle class="rl" cx="96" cy="56" r="4"/><g class="qq"><circle class="em" cx="96" cy="14" r="9"/><text x="96" y="17.3">?</text></g></g><g style="--k:3"><line class="st" x1="133" y1="52" x2="133" y2="22"/><circle class="rl" cx="133" cy="56" r="4"/><g class="qq"><circle class="em" cx="133" cy="14" r="9"/><text x="133" y="17.3">?</text></g></g><g style="--k:4"><line class="st" x1="170" y1="52" x2="170" y2="22"/><circle class="rl" cx="170" cy="56" r="4"/><g class="qq"><circle class="em" cx="170" cy="14" r="9"/><text x="170" y="17.3">?</text></g></g></svg></div></article>
+      </div></div>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Se avanzaba por pedido o por intuición, sin datos que confirmaran o descartaran nada después del release. Mi trabajo fue resolver las dos cosas a la vez: definir hacia dónde tenía que crecer el producto y cómo íbamos a medirlo, además de darle una base visual consistente. También rediseñé la web del producto, alineada al mismo sistema.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="/assets/persat-before.png" alt="Versión anterior de Persat: home de módulos y bandeja de formularios" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">La versión anterior: home de módulos y bandeja de formularios, cada uno con su propio criterio visual.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Empezar por la base: el design system</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Antes de tocar cualquier módulo, decidí resolver primero la base: diseñé el design system desde cero, de forma autónoma, definiendo componentes, estados, espaciados y patrones de interacción documentados en Figma. Lo pensé escalable desde el día uno y con soporte nativo de modo claro y oscuro, porque sabía que la app iba a seguir creciendo y que cada módulo nuevo debía apoyarse en la misma base en vez de inventar la suya. Una vez definido, lo fui llevando al resto de la aplicación, módulo por módulo.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="/assets/persat-ds-wireframes.png" alt="Wireframes y componentes del design system de Persat" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Wireframes, componentes y estados del design system.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Decidir qué construir primero</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">El roadmap sumaba módulos nuevos todo el tiempo, y esa no era una decisión que me tocara solo ejecutar en pantallas: había que definir qué construir primero. Lideré un relevamiento completo de la app, entrevistas con usuarios y un benchmark de la competencia. Con esa información evalué qué módulos podían atraer usuarios nuevos, cuáles resolvían los dolores más urgentes de los que ya estaban, y qué ofrecía el mercado que Persat todavía no. Ese trabajo, con un enfoque de design thinking, es el que definió qué mejorar primero y qué construir después, en vez de avanzar módulo por módulo por intuición.</p>
+      <div style="margin-top:28px">
+        <div class="bm-wrap"><div class="bm" role="table" aria-label="Benchmark frente a competidores directos">
+<div class="bm-r bm-hd" role="row" style="--r:0"><div class="bm-f" role="columnheader"></div><div class="bm-n me" role="columnheader">Persat</div><div class="bm-n " role="columnheader">Routal</div><div class="bm-n " role="columnheader">Beetrack</div><div class="bm-n " role="columnheader">SimpliRoute</div><div class="bm-n " role="columnheader">Auvo</div></div>
+<div class="bm-r" role="row" style="--r:1"><div class="bm-f" role="rowheader">Ruteo optimizado con IA</div><div class="bm-c me" role="cell" style="--c:0"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:1"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:2"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:3"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:4"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div></div>
+<div class="bm-r" role="row" style="--r:2"><div class="bm-f" role="rowheader">Tracking en tiempo real</div><div class="bm-c me" role="cell" style="--c:0"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:1"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:2"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:3"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:4"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div></div>
+<div class="bm-r" role="row" style="--r:3"><div class="bm-f" role="rowheader">App offline en campo</div><div class="bm-c me gap" role="cell" style="--c:0"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div><div class="bm-c " role="cell" style="--c:1"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:2"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div><div class="bm-c " role="cell" style="--c:3"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div><div class="bm-c " role="cell" style="--c:4"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div></div>
+<div class="bm-r" role="row" style="--r:4"><div class="bm-f" role="rowheader">Formularios digitales</div><div class="bm-c me" role="cell" style="--c:0"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:1"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:2"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:3"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div><div class="bm-c " role="cell" style="--c:4"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div></div>
+<div class="bm-r" role="row" style="--r:5"><div class="bm-f" role="rowheader">Analítica y reportes</div><div class="bm-c me" role="cell" style="--c:0"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:1"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:2"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div><div class="bm-c " role="cell" style="--c:3"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div><div class="bm-c " role="cell" style="--c:4"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div></div>
+<div class="bm-r" role="row" style="--r:6"><div class="bm-f" role="rowheader">Integraciones ERP/CRM</div><div class="bm-c me gap" role="cell" style="--c:0"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div><div class="bm-c " role="cell" style="--c:1"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:2"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:3"><span class="ok" role="img" aria-label="Sí"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span></div><div class="bm-c " role="cell" style="--c:4"><span class="no" role="img" aria-label="No"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></div></div>
+<div class="bm-r bm-ft" role="row" style="--r:7"><div class="bm-f" role="rowheader">Cobertura</div><div class="bm-c me" role="cell"><span class="cv">4/6</span><span class="cb" aria-hidden="true"><i style="--pct:67;--k:0"></i></span></div><div class="bm-c " role="cell"><span class="cv">6/6</span><span class="cb" aria-hidden="true"><i style="--pct:100;--k:1"></i></span></div><div class="bm-c " role="cell"><span class="cv">4/6</span><span class="cb" aria-hidden="true"><i style="--pct:67;--k:2"></i></span></div><div class="bm-c " role="cell"><span class="cv">3/6</span><span class="cb" aria-hidden="true"><i style="--pct:50;--k:3"></i></span></div><div class="bm-c " role="cell"><span class="cv">3/6</span><span class="cb" aria-hidden="true"><i style="--pct:50;--k:4"></i></span></div></div>
+<div class="bm-key"><span><span class="ok" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.4l2.7 2.7L12 5.6"/></svg></span>Lo ofrece</span><span><span class="no" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span>No lo ofrece</span><span><span class="gap"><span class="no" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4.5 8h7"/></svg></span></span>Brecha de Persat frente al mercado</span></div>
+</div></div>
+        <div class="qt-wrap"><div class="qt-g">
+<figure class="qt" style="--i:0;margin:0"><div class="qt-top"><span class="qt-mark" aria-hidden="true">"</span><span class="qt-tag">Seguimiento</span></div><blockquote class="qt-q" style="margin:0">Termino anotando las visitas en un cuaderno porque en la app no tengo dónde llevar el seguimiento.</blockquote><figcaption class="qt-by"><span class="qt-av" aria-hidden="true">MS</span><span><span class="qt-nm">Martín Sosa</span><span class="qt-rl">Vendedor de zona</span></span></figcaption></figure>
+<figure class="qt" style="--i:1;margin:0"><div class="qt-top"><span class="qt-mark" aria-hidden="true">"</span><span class="qt-tag">Consistencia</span></div><blockquote class="qt-q" style="margin:0">Cada módulo parece una app distinta. Tengo que volver a aprender cada vez que cambio de pantalla.</blockquote><figcaption class="qt-by"><span class="qt-av" aria-hidden="true">DF</span><span><span class="qt-nm">Diego Ferreyra</span><span class="qt-rl">Técnico de mantenimiento</span></span></figcaption></figure>
+<figure class="qt" style="--i:2;margin:0"><div class="qt-top"><span class="qt-mark" aria-hidden="true">"</span><span class="qt-tag">Medición</span></div><blockquote class="qt-q" style="margin:0">No sé si estoy mejorando o no — no hay forma de ver mi propio desempeño a lo largo del tiempo.</blockquote><figcaption class="qt-by"><span class="qt-av" aria-hidden="true">LB</span><span><span class="qt-nm">Lucas Benítez</span><span class="qt-rl">Repartidor</span></span></figcaption></figure>
+<figure class="qt" style="--i:3;margin:0"><div class="qt-top"><span class="qt-mark" aria-hidden="true">"</span><span class="qt-tag">Ruteo</span></div><blockquote class="qt-q" style="margin:0">Para armar mi ruta del día terminaba usando Google Maps aparte, porque acá no se ajustaba a mis paradas reales.</blockquote><figcaption class="qt-by"><span class="qt-av" aria-hidden="true">NO</span><span><span class="qt-nm">Nahuel Ortiz</span><span class="qt-rl">Repartidor de productos</span></span></figcaption></figure>
+<figure class="qt" style="--i:4;margin:0"><div class="qt-top"><span class="qt-mark" aria-hidden="true">"</span><span class="qt-tag">Formularios</span></div><blockquote class="qt-q" style="margin:0">Los formularios se acumulan sin ningún orden. Buscar uno viejo es casi imposible.</blockquote><figcaption class="qt-by"><span class="qt-av" aria-hidden="true">PR</span><span><span class="qt-nm">Pablo Ríos</span><span class="qt-rl">Inspector en calle</span></span></figcaption></figure>
+<figure class="qt" style="--i:5;margin:0"><div class="qt-top"><span class="qt-mark" aria-hidden="true">"</span><span class="qt-tag">Reportes</span></div><blockquote class="qt-q" style="margin:0">Cuando me preguntan cómo viene el mes, termino armando un Excel a mano con lo que junté de memoria.</blockquote><figcaption class="qt-by"><span class="qt-av" aria-hidden="true">CM</span><span><span class="qt-nm">Carla Medina</span><span class="qt-rl">Supervisor de operaciones</span></span></figcaption></figure>
+</div></div>
+        <div style="font-size:13px;color:#86868b;margin-top:10px">Benchmark frente a competidores directos y citas de las entrevistas con vendedores, técnicos, repartidores y supervisores.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Home y módulos</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Con seis módulos activos, el punto de entrada tenía que ordenar el acceso a todos sin que ninguno compitiera por atención. Rediseñé el home como el punto de partida del sistema aplicado a un caso real, resolviendo jerarquía, densidad de información y consistencia entre web y mobile.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="/assets/persat-home-dark.png" alt="Home de Persat en modo claro y oscuro" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Vista de la home nueva en modo regular y dark mode.</div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Bandeja de entrada y tableros</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Actualicé la bandeja de entrada de formularios, uno de los módulos más usados y que los clientes más iban a valorar, organizando todo tipo de formularios por carpetas para que dejaran de vivir en flujos separados y sin relación entre sí. A partir de un análisis de cómo los equipos gestionaban ese trabajo, detecté que no tenían una forma real de llevar el proceso: terminaban recurriendo a otras aplicaciones o a pizarras manuales para no perder el hilo. Para resolverlo, sumé una vista tipo kanban dentro de la misma bandeja, que le permite a cada cliente armar su propio flujo de trabajo y controlar el avance de cada formulario sin salir de Persat.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="/assets/persat-inbox-kanban.png" alt="Bandeja de entrada y tablero kanban de Persat" style="width:100%">
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Persat IA</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Persat ya contaba con un algoritmo propio de ruteo. Junto con el equipo, evalué qué otras capacidades de IA podíamos aprovechar y cómo llevarlas a más módulos de la aplicación, para que no se quedara solo en optimizar recorridos sino que ayudara a los clientes a ser más eficientes en otras áreas del negocio. De ahí surgió un chat conversacional dentro de Persat IA: además de tirar estadísticas de forma proactiva sobre el negocio, permite hacer preguntas puntuales sobre performance y sobre cualquier otra operación dentro de la plataforma.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="/assets/persat-routing-ai.png" alt="Persat IA — ruteo y chat conversacional" style="width:100%">
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Medir para seguir mejorando</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Lanzar un cambio no era el final del trabajo. Implementé Amplitude para trackear ingresos a bandeja, formularios completados por día y distribución de cambios de estado, y así saber si cada mejora funcionaba en la realidad o solo en la teoría, antes de decidir el siguiente paso.</p>
+      <div style="border-radius:20px;overflow:hidden">
+        <img src="/assets/persat-analytics.png" alt="Dashboards de Amplitude para Persat" style="width:100%">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Dashboards de Amplitude con el seguimiento post-lanzamiento.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">El resultado</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Persat pasó de no tener design system a tener una base consistente que hoy sostiene seis módulos activos y sigue creciendo. Desde que implementamos el nuevo sistema, la experiencia de uso mejoró de forma notable: el NPS subió 5 puntos y la cantidad de usuarios activos creció de forma sostenida. Esa mejora en la experiencia se tradujo directamente en el negocio — las ventas aumentaron 15% después de las mejoras implementadas en los módulos, en gran parte porque los clientes que ya usaban Persat empezaron a usarlo más, y eso atrajo clientes nuevos.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Aprendizajes</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Empezar por el design system en lugar de por el módulo más urgente fue la decisión más difícil de defender y la que más rindió: cada rediseño posterior costó una fracción del primero, porque ya había piezas y patrones sobre los que apoyarse.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El otro aprendizaje fue sobre el criterio para priorizar. Ordenar el roadmap con relevamiento, entrevistas y benchmark en vez de por pedido puntual cambió la conversación con el equipo: dejamos de discutir preferencias y empezamos a discutir evidencia.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Medir fue clave. Amplitude nos permitió monitorear cada cambio a medida que salía y corregir sobre la marcha, en vez de esperar al próximo release para enterarnos de un problema. Ver que los usuarios adoptaban los módulos nuevos más rápido y los usaban más fue la validación real de todo el trabajo, y lo confirmaron los números de experiencia: NPS, CSAT y CES mejoraron después del rediseño.</p>
+    </div>
+  </section>
+
+  <section style="background:#1d1d1f;color:#fff;padding:80px 24px;text-align:center">
+    <h2 style="font-size:32px;font-weight:700;letter-spacing:-0.01em;margin:0 0 24px">¿Seguimos la conversación?</h2>
+    <a href="Portfolio Landing.dc.html#contact" style="background:#5b4fd6;color:#fff;padding:14px 30px;border-radius:10px;font-weight:600;font-size:16px;display:inline-block">Contactarme</a>
+  </section>
+
+  <footer style="max-width:1120px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#86868b">
+    <span>© 2026 Franco Preci</span>
+    <a href="Portfolio Landing.dc.html#work" style="color:#86868b">Otros proyectos →</a>
+  </footer>
+
+</div>
+
+</x-dc>
+
+</body>
+</html>

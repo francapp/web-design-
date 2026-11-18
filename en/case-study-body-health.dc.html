@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="alternate" hreflang="es" href="https://francopreci.com/case-study-body-health.dc.html">
+<link rel="alternate" hreflang="en" href="https://francopreci.com/en/case-study-body-health.dc.html">
+<link rel="alternate" hreflang="x-default" href="https://francopreci.com/case-study-body-health.dc.html">
+<style>
+  @keyframes om-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+  @supports (animation-timeline: view()){
+    @media (prefers-reduced-motion: no-preference){
+      section > *{animation:om-rise 0.75s cubic-bezier(0.22,1,0.36,1) both;animation-timeline:view();animation-range:entry 0% cover 20%}
+    }
+  }
+</style>
+
+<template id="__bundler_thumbnail" data-bg-color="#fbfbfd">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbfbfd"/>
+    <rect x="30" y="30" width="40" height="40" fill="#5b4fd6"/>
+    <text x="50" y="57" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">BH</text>
+  </svg>
+</template>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body{margin:0}
+  a{color:#5b4fd6;text-decoration:none}
+  a:hover{color:#4a3fc0}
+  .bhg-panel-fallback{display:none}
+  @media(prefers-reduced-motion:reduce){.bhg-panel-video{display:none!important}.bhg-panel-fallback{display:block!important}}
+</style>
+<script>(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var attempts=0;
+  function tryPlay(v){
+    v.muted=true;v.defaultMuted=true;v.playsInline=true;
+    v.play().catch(function(e){console.warn('bhg video play falló',e);});
+  }
+  function attachObserver(v){
+    if(!('IntersectionObserver' in window))return;
+    new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting)v.play().catch(function(e){console.warn('bhg video play falló',e);});
+      else v.pause();
+    },{threshold:0.1}).observe(v);
+  }
+  function init(){
+    var v=document.querySelector('.bhg-panel-video');
+    if(!v){if(attempts++<50)setTimeout(init,200);return;}
+    tryPlay(v);
+    attachObserver(v);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})()</script>
+<style>
+:root{--card:#ffffff;--line:#e5e5ea;--muted:#6e6e73;--accent:#5b4fd6;--tint:#e9e7fb;--tint-2:#cfcaf4;--sp:1}
+/* ===== Cifras animadas (Body Health) ===== */
+.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,32px);font-family:'Inter',system-ui,sans-serif}
+.stat{--ci:0;position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;
+  padding:clamp(20px,2.2vw,30px);background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.stat:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(91,79,214,.45)}
+.stat .num{display:flex;height:1em;line-height:1;font-size:clamp(44px,5vw,66px);font-weight:700;letter-spacing:-.03em;
+  color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .dg{position:relative;display:block;width:.62em;height:1em;overflow:hidden}
+.stat .strip{display:block;transform:translateY(calc(var(--to) * -1em - 10em))}
+.stat .strip span{display:block;height:1em;line-height:1;text-align:center}
+.stat .label{margin:10px 0 0;font-size:clamp(14px,1.4vw,17px);line-height:1.4;color:var(--muted);text-wrap:balance}
+.stat .viz{margin-top:auto;padding-top:18px}
+.stat .viz i{display:block}
+/* 1 · personas entrevistadas */
+.viz-people{display:grid;grid-template-columns:repeat(20,1fr);gap:4px}
+.viz-people i{aspect-ratio:1;border-radius:50%;background:var(--accent)}
+/* 2 · pantallas */
+.viz-screens{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.viz-screens i{aspect-ratio:2.2;border-radius:3px;background:var(--tint);border:1.5px solid var(--accent);position:relative}
+.viz-screens i::after{content:"";position:absolute;left:22%;right:22%;top:calc(50% - 1px);height:2px;border-radius:2px;background:var(--accent);opacity:.7}
+/* 3 · tamaños */
+.viz-sizes{display:flex;align-items:flex-end;gap:12px}
+.viz-sizes figure{margin:0;display:block}
+.viz-sizes .frame{display:flex;align-items:center;justify-content:center;border:2px solid var(--accent);border-radius:6px;background:var(--tint);position:relative;font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--accent)}
+.viz-sizes .a{width:58px;aspect-ratio:16/10}
+.viz-sizes .b{width:72px;aspect-ratio:16/9}
+/* 4 · tests (anillo de 20 marcas) */
+.viz-ring{position:relative;width:56px;height:56px}
+.viz-ring i{position:absolute;left:50%;top:50%;width:2.5px;height:8px;margin:-4px 0 0 -1.25px;border-radius:2px;
+  background:var(--accent);transform:rotate(calc(var(--k) * 18deg)) translateY(-23px)}
+.viz-ring svg{position:absolute;inset:0;margin:auto;width:20px;height:20px;fill:none;stroke:var(--accent);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.viz-ring path{stroke-dasharray:30;stroke-dashoffset:0}
+/* ----- estado inicial y animación (solo con JS y sin "reducir movimiento") ----- */
+.stat .strip{transition:transform calc(1.9s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--ci) * 140 + var(--di) * 120) * 1ms * var(--sp))}
+.viz-people i,.viz-screens i,.viz-sizes figure,.viz-ring i,.viz-ring path{
+  transition:opacity calc(.5s * var(--sp)) ease,transform calc(.6s * var(--sp)) cubic-bezier(.34,1.56,.64,1),stroke-dashoffset calc(.7s * var(--sp)) ease}
+@keyframes stat-rise{from{transform:translateY(14px)}to{transform:none}}
+@media (prefers-reduced-motion: no-preference){
+  html.stats-js .stat-grid:not(.is-in) .strip{transform:translateY(0)}
+  html.stats-js .stat-grid:not(.is-in) .stat{transform:translateY(14px)}
+  html.stats-js .stat-grid:not(.is-in) .viz-people i{opacity:0;transform:scale(.2)}
+  html.stats-js .stat-grid:not(.is-in) .viz-screens i{opacity:0;transform:translateY(8px) scale(.8)}
+  html.stats-js .stat-grid:not(.is-in) .viz-sizes figure{opacity:0;transform:translateY(10px) scale(.9)}
+  html.stats-js .stat-grid:not(.is-in) .viz-ring i{opacity:.12}
+  html.stats-js .stat-grid:not(.is-in) .viz-ring path{stroke-dashoffset:30}
+  .stat-grid.is-in .stat{animation:stat-rise calc(.9s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--ci) * 120ms * var(--sp)) backwards}
+  .viz-people i{transition-delay:calc((380 + var(--ci) * 140 + var(--k) * 42) * 1ms * var(--sp))}
+  .viz-screens i{transition-delay:calc((380 + var(--ci) * 140 + var(--k) * 30) * 1ms * var(--sp))}
+  .viz-sizes figure:nth-child(1){transition-delay:calc((420 + var(--ci) * 140) * 1ms * var(--sp))}
+  .viz-sizes figure:nth-child(2){transition-delay:calc((700 + var(--ci) * 140) * 1ms * var(--sp))}
+  .viz-ring i{transition-delay:calc((380 + var(--ci) * 140 + var(--k) * 42) * 1ms * var(--sp))}
+  .viz-ring path{transition-delay:calc((1500 + var(--ci) * 140) * 1ms * var(--sp))}
+}
+.stat-grid.reset *,.stat-grid.reset{transition:none!important}
+@media (max-width:960px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.stat-grid{grid-template-columns:minmax(0,1fr)}}
+/* ===== Porcentajes animados (Empatizar) · reutiliza .stat-grid / .stat / .num del bloque de cifras ===== */
+.stat-grid.pct-grid{--accent:#9a6f75;--accent-2:#cda9ae;--tint:#f4eaec;--tint-2:#e6d3d6;grid-template-columns:repeat(2,minmax(0,1fr))}
+.pct-grid .sym{display:block;height:1em;line-height:1;letter-spacing:-.03em}
+.pct-grid .label{max-width:34ch}
+.viz-bar .track{position:relative;display:block;height:10px;border-radius:999px;background:var(--tint);overflow:hidden}
+.viz-bar .fill{position:absolute;left:0;top:0;bottom:0;width:calc(var(--pct) * 1%);border-radius:999px;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  transition:width calc(1.9s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--ci) * 140 + 120) * 1ms * var(--sp))}
+.viz-bar .track::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 2px),var(--card) calc(25% - 2px),var(--card) 25%)}
+@media (prefers-reduced-motion: no-preference){
+  html.stats-js .pct-grid:not(.is-in) .viz-bar .fill{width:0}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .stat-grid.pct-grid{--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}}
+:root[data-theme="dark"] .stat-grid.pct-grid{--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
+@media (max-width:480px){.stat-grid.pct-grid{grid-template-columns:minmax(0,1fr)}}
+/* ===== Definir animado (sección Definir) ===== */
+.def-pains,.def-personas{font-family:'Inter',system-ui,sans-serif}
+.def-pains{--accent:#9a6f75;--ink:#84585f;--tint:#f4eaec;--tint-2:#e6d3d6;
+  list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.def-pain{--i:0;position:relative;display:flex;align-items:center;gap:14px;min-width:0;
+  padding:14px 18px 14px 14px;background:var(--card);border:1px solid var(--line);border-radius:20px;
+  font-size:clamp(14.5px,1.35vw,16.5px);line-height:1.35;color:#23232b;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s,background .35s}
+.def-pain:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(154,111,117,.55)}
+.def-pain .n{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:var(--tint);color:var(--ink);font-size:12.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;
+  transition:background .35s,color .35s}
+.def-pain:hover .n{background:var(--accent);color:#fff}
+.def-personas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,32px)}
+.def-p{--ci:0;--accent:#9a6f75;--ink:#84585f;--accent-2:#cda9ae;--tint:#f4eaec;--tint-2:#e6d3d6;
+  position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;
+  padding:clamp(22px,2.4vw,34px);background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.def-p.alt{--accent:#6f8fa6;--ink:#527186;--accent-2:#a9c0cf;--tint:#eaf1f6;--tint-2:#d3e1ea}
+.def-p:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 16px 34px -20px var(--accent)}
+.def-head{display:flex;align-items:center;gap:clamp(16px,2vw,24px)}
+.def-av{flex:none;display:block;width:clamp(84px,8.5vw,108px);aspect-ratio:1;border-radius:50%;overflow:hidden;
+  background:linear-gradient(160deg,var(--tint),var(--tint-2));box-shadow:inset 0 0 0 1.5px var(--tint-2);position:relative}
+.def-av::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(60,60,72,.2)}
+.def-img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(.94)}
+.def-p h3{margin:0;font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.02em;line-height:1.15;color:#1c1c22}
+.def-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.def-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;
+  background:var(--tint);color:var(--ink);font-size:12.5px;font-weight:600;line-height:1.3;white-space:nowrap}
+.def-age{display:inline-flex;height:1.3em;line-height:1.3;overflow:hidden}
+.def-age .dg{position:relative;display:block;width:.62em;height:1.3em;overflow:hidden}
+.def-age .strip{display:block;transform:translateY(calc(var(--to) * -1.3em - 13em))}
+.def-age .strip span{display:block;height:1.3em;line-height:1.3;text-align:center;font-variant-numeric:tabular-nums}
+.def-blk{margin-top:clamp(18px,2vw,26px);display:grid;grid-template-columns:30px 1fr;column-gap:14px;align-items:start}
+.def-ic{grid-row:1 / span 2;display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:var(--tint);color:var(--ink)}
+.def-ic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.def-blk h4{margin:2px 0 0;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink)}
+.def-blk p{margin:6px 0 0;font-size:clamp(15px,1.4vw,17.5px);line-height:1.5;color:#3d3d46;text-wrap:pretty}
+.def-age .strip{transition:transform calc(1.7s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--ci) * 160 + 500) * 1ms * var(--sp))}
+@keyframes def-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes def-pop{from{opacity:0;transform:scale(.4)}60%{transform:scale(1.08)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: no-preference){
+  html.def-js .def-r:not(.is-in) .def-pain,
+  html.def-js .def-r:not(.is-in) .def-p,
+  html.def-js .def-r:not(.is-in) .def-av,
+  html.def-js .def-r:not(.is-in) .def-chip,
+  html.def-js .def-r:not(.is-in) .def-blk{opacity:0}
+  html.def-js .def-r:not(.is-in) .def-age .strip{transform:translateY(0)}
+  .def-pains.is-in .def-pain{animation:def-rise calc(.7s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 90ms * var(--sp)) backwards}
+  .def-pains.is-in .def-pain .n{animation:def-pop calc(.6s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((var(--i) * 90 + 200) * 1ms * var(--sp)) backwards}
+  .def-personas.is-in .def-p{animation:def-rise calc(.9s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--ci) * 160ms * var(--sp)) backwards}
+  .def-personas.is-in .def-av{animation:def-pop calc(.7s * var(--sp)) cubic-bezier(.34,1.56,.64,1) calc((var(--ci) * 160 + 250) * 1ms * var(--sp)) backwards}
+  .def-personas.is-in .def-chip{animation:def-rise calc(.5s * var(--sp)) cubic-bezier(.22,1,.36,1) calc((var(--ci) * 160 + 450 + var(--k) * 90) * 1ms * var(--sp)) backwards}
+  .def-personas.is-in .def-blk{animation:def-rise calc(.7s * var(--sp)) cubic-bezier(.22,1,.36,1) calc((var(--ci) * 160 + 800 + var(--b) * 260) * 1ms * var(--sp)) backwards}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .def-pains{--ink:#e0b4bc;--accent:#d9a3ad;--tint:#2d2226;--tint-2:#4a343a}
+  :root:not([data-theme="light"]) .def-pain,:root:not([data-theme="light"]) .def-p h3{color:#f1f1f5}
+  :root:not([data-theme="light"]) .def-blk p{color:#c9c9d2}
+  :root:not([data-theme="light"]) .def-p{--ink:#e0b4bc;--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
+  :root:not([data-theme="light"]) .def-p.alt{--ink:#a9c4d6;--accent:#8fb0c6;--accent-2:#5d7b90;--tint:#1f2a32;--tint-2:#34495a}}
+:root[data-theme="dark"] .def-pains{--ink:#e0b4bc;--accent:#d9a3ad;--tint:#2d2226;--tint-2:#4a343a}
+:root[data-theme="dark"] .def-pain,:root[data-theme="dark"] .def-p h3{color:#f1f1f5}
+:root[data-theme="dark"] .def-blk p{color:#c9c9d2}
+:root[data-theme="dark"] .def-p{--ink:#e0b4bc;--accent:#d9a3ad;--accent-2:#a97983;--tint:#2d2226;--tint-2:#4a343a}
+:root[data-theme="dark"] .def-p.alt{--ink:#a9c4d6;--accent:#8fb0c6;--accent-2:#5d7b90;--tint:#1f2a32;--tint-2:#34495a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .def-av::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}}
+:root[data-theme="dark"] .def-av::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+@media (max-width:760px){.def-personas{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.def-pains{grid-template-columns:minmax(0,1fr)}.def-chip{white-space:normal}}
+.flow-wrap{container-type:inline-size;container-name:flowwrap;width:100%}
+.flow{--pad:clamp(20px,2.2vw,30px);--gap:clamp(14px,2vw,32px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);
+  list-style:none;margin:0;padding:0;font-family:'Inter',system-ui,sans-serif;counter-reset:s}
+.flow-s{--i:0;position:relative;display:flex;flex-direction:column;min-width:0;padding:var(--pad);
+  background:var(--card);border:1px solid var(--line);border-radius:28px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.flow-s:hover{transform:translateY(-3px);border-color:var(--tint-2);box-shadow:0 14px 30px -18px rgba(91,79,214,.45)}
+.flow-h{display:flex;align-items:center;gap:14px}
+.flow-n{display:flex;height:1em;line-height:1;font-size:clamp(44px,5vw,66px);font-weight:700;letter-spacing:-.03em;color:var(--accent);font-variant-numeric:tabular-nums}
+.flow-n .dg{position:relative;display:block;width:.62em;height:1em;overflow:hidden}
+.flow-n .strip{display:block;transform:translateY(calc(var(--to) * -1em - 10em))}
+.flow-n .strip span{display:block;height:1em;line-height:1;text-align:center}
+.flow-t{margin:10px 0 0;font-size:clamp(14px,1.4vw,17px);line-height:1.4;color:var(--muted);text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
+.flow-v{margin-top:auto;padding-top:18px}
+/* conector entre pasos: va del número de un paso al número del siguiente */
+.flow-l{position:relative;flex:1;height:2px;min-width:0}
+.flow-l i,.flow-l b{position:absolute;left:0;top:0;height:2px;border-radius:2px;width:calc(100% + var(--pad) * 2 + var(--gap) - 14px)}
+.flow-l i{background:var(--tint-2)}
+.flow-l b{background:linear-gradient(90deg,var(--accent),#8b82ec);transform-origin:left;transform:scaleX(1);transition:transform calc(.7s * var(--sp)) cubic-bezier(.22,1,.36,1)}
+.flow-s:last-child .flow-l{visibility:hidden}
+/* 1 · terapias */
+.v-thr{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.v-thr i{position:relative;aspect-ratio:1;border-radius:12px;background:var(--tint);border:1.5px solid transparent;transition:transform .5s cubic-bezier(.34,1.56,.64,1),border-color .4s,background .4s}
+.v-thr i::after{content:"";position:absolute;left:28%;right:28%;top:calc(50% - 1px);height:2px;border-radius:2px;background:var(--accent);opacity:.45}
+.v-thr i.pick{border-color:var(--accent);background:#fff}
+.v-thr i.pick::after{opacity:1}
+/* 2 · cuerpo */
+.v-body{display:flex;gap:14px;align-items:flex-end}
+.v-body svg{height:74px;width:auto;overflow:visible}
+.v-body .b{fill:var(--tint);stroke:var(--tint-2);stroke-width:1.5}
+.v-body .z{fill:var(--accent);opacity:.9;transform-box:fill-box;transform-origin:center}
+.v-body .tg{display:flex;flex-direction:column;gap:6px;margin-left:auto;align-self:center}
+.v-body .tg i{display:block;width:34px;height:8px;border-radius:99px;background:var(--tint)}
+.v-body .tg i.on{background:var(--accent)}
+/* 3 · variables */
+.v-var{display:grid;gap:13px}
+.v-var span{position:relative;display:block;height:6px;border-radius:99px;background:var(--tint)}
+.v-var b{position:absolute;left:0;top:0;bottom:0;width:calc(var(--v) * 1%);border-radius:99px;background:linear-gradient(90deg,#8b82ec,var(--accent))}
+.v-var b::after{content:"";position:absolute;right:-6px;top:-4px;width:14px;height:14px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);box-sizing:border-box}
+/* 4 · temporizador */
+.v-tim{display:flex;align-items:center;gap:14px}
+.v-tim svg{width:66px;height:66px;flex:none}
+.v-tim .rg{fill:none;stroke:var(--tint);stroke-width:6}
+.v-tim .pg{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;stroke-dasharray:138;stroke-dashoffset:40;transform:rotate(-90deg);transform-origin:center}
+.v-tim .pl{fill:var(--accent)}
+.v-tim .ct{display:flex;gap:8px}
+.v-tim .ct i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--tint)}
+.v-tim .ct i::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--accent)}
+.v-tim .ct i:first-child::before{width:10px;height:11px;border-radius:1px;background:linear-gradient(90deg,var(--accent) 36%,transparent 36%,transparent 64%,var(--accent) 64%)}
+/* animación al entrar (solo con JS y sin "reducir movimiento") */
+@keyframes flow-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes flow-pop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes flow-pulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.12);opacity:.55}}
+@media (prefers-reduced-motion: no-preference){
+  html.flow-js .flow:not(.is-in) .flow-s{opacity:0}
+  html.flow-js .flow:not(.is-in) .flow-l b{transform:scaleX(0)}
+  html.flow-js .flow:not(.is-in) .flow-n .strip{transform:translateY(0)}
+  html.flow-js .flow:not(.is-in) .v-thr i.pick{border-color:transparent;background:var(--tint)}
+  html.flow-js .flow:not(.is-in) .v-var b{width:0}
+  html.flow-js .flow:not(.is-in) .v-tim .pg{stroke-dashoffset:138}
+  html.flow-js .flow:not(.is-in) .v-body .z{opacity:0}
+  .flow.is-in .flow-s{animation:flow-rise calc(.8s * var(--sp)) cubic-bezier(.22,1,.36,1) calc(var(--i) * 260ms * var(--sp)) backwards;
+    --d:calc(var(--i) * 260ms * var(--sp))}
+  .flow-n .strip{transition:transform calc(1.7s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((var(--i) * 260 + 120 + var(--di) * 110) * 1ms * var(--sp))}
+  .flow-l b{transition-delay:calc((var(--i) * 260 + 650) * 1ms * var(--sp))}
+  .v-thr i.pick{transition-delay:calc(var(--i) * 260ms * var(--sp) + 700ms)}
+  .v-var b{transition:width calc(1.3s * var(--sp)) cubic-bezier(.16,1,.3,1) calc(var(--i) * 260ms * var(--sp) + 600ms + var(--k) * 160ms * var(--sp))}
+  .v-tim .pg{transition:stroke-dashoffset calc(2s * var(--sp)) cubic-bezier(.16,1,.3,1) calc(var(--i) * 260ms * var(--sp) + 650ms)}
+  .v-body .z{transition:opacity .6s ease calc(var(--i) * 260ms * var(--sp) + 700ms)}
+  .flow.is-in .v-body .z{animation:flow-pulse 2.4s ease-in-out calc(var(--i) * 260ms * var(--sp) + 1400ms) infinite}
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--ink:#f1f1f5;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}
+  :root:not([data-theme="light"]) .v-thr i.pick{background:#14141a}:root:not([data-theme="light"]) .v-var b::after{background:#14141a}}
+:root[data-theme="dark"]{--card:#1b1b22;--line:#2d2d38;--muted:#a9a9b3;--ink:#f1f1f5;--accent:#8f86f0;--tint:#25233d;--tint-2:#3b3763}
+:root[data-theme="dark"] .v-thr i.pick,:root[data-theme="dark"] .v-var b::after{background:#14141a}
+@media (max-width:960px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-l{display:none}}
+@media (max-width:480px){.flow{grid-template-columns:minmax(0,1fr)}}
+/* según el ancho real del contenedor (no de la ventana): 4 -> 2 -> 1 columnas */
+@container flowwrap (max-width:940px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-l{display:none}}
+@container flowwrap (max-width:460px){.flow{grid-template-columns:minmax(0,1fr)}}
+</style>
+<script>
+(function(){
+  document.documentElement.classList.add('stats-js');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{threshold:0.35}):null;
+  function scan(){
+    var grids=document.querySelectorAll('.stat-grid:not([data-bound])');
+    for(var i=0;i<grids.length;i++){
+      grids[i].setAttribute('data-bound','1');
+      if(io)io.observe(grids[i]);else grids[i].classList.add('is-in');
+    }
+  }
+  scan();
+  if('MutationObserver' in window){
+    new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
+  }
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('def-js');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{threshold:0.2}):null;
+  function scan(){
+    var els=document.querySelectorAll('.def-r:not([data-bound])');
+    for(var i=0;i<els.length;i++){
+      els[i].setAttribute('data-bound','1');
+      if(io)io.observe(els[i]);else els[i].classList.add('is-in');
+    }
+  }
+  scan();
+  if('MutationObserver' in window){
+    new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
+  }
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('flow-js');
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{threshold:0.25}):null;
+  function scan(){
+    var els=document.querySelectorAll('.flow:not([data-bound])');
+    for(var i=0;i<els.length;i++){
+      els[i].setAttribute('data-bound','1');
+      if(io)io.observe(els[i]);else els[i].classList.add('is-in');
+    }
+  }
+  scan();
+  if('MutationObserver' in window){new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});}
+})();
+</script>
+
+<style>
+/* ===== Switch de idioma (gris, segmentado) ===== */
+:root{--lg-track:#eeeef1;--lg-thumb:#ffffff;--lg-ink:#1c1c22;--lg-mut:#6b6b73}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--lg-track:#26262d;--lg-thumb:#3a3a44;--lg-ink:#f1f1f5;--lg-mut:#a9a9b3}}
+:root[data-theme="dark"]{--lg-track:#26262d;--lg-thumb:#3a3a44;--lg-ink:#f1f1f5;--lg-mut:#a9a9b3}
+.lg{--p:0;position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:999px;background:var(--lg-track);isolation:isolate;font-family:'Inter',system-ui,sans-serif;flex:none}
+html[lang^="en"] .lg{--p:1}
+.lg::before{content:"";position:absolute;z-index:-1;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--lg-thumb);
+  box-shadow:0 1px 3px rgba(0,0,0,.14),0 0 0 1px rgba(0,0,0,.04);transform:translateX(calc(var(--p) * 100%));transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.lg a{text-align:center;padding:6px 13px;font-size:12.5px;font-weight:700;letter-spacing:.04em;line-height:1.2;color:var(--lg-mut);text-decoration:none;border-radius:999px;transition:color .3s}
+.lg a[aria-current="true"],.lg.is-sw a[aria-current="true"]{color:var(--lg-ink)}
+.lg.is-sw a{color:var(--lg-mut)}
+.lg a:focus-visible{outline:2px solid var(--lg-ink);outline-offset:2px}
+</style>
+<script>
+(function(){
+  function counterpart(target){
+    var p=location.pathname,inEn=/^\/en(\/|$)/.test(p);
+    var base=inEn?p.replace(/^\/en/,'')||'/':p;
+    var dest=target==='en'?'/en'+(base==='/'?'/':base):base;
+    return dest+location.search+location.hash;
+  }
+  function wire(){
+    document.querySelectorAll('.lg a[data-lang]').forEach(function(a){
+      a.setAttribute('href',counterpart(a.getAttribute('data-lang')));
+    });
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.lg a[data-lang]');
+    if(!a)return;
+    var lang=a.getAttribute('data-lang');
+    try{localStorage.setItem('fp-lang',lang);}catch(_){}
+    if(a.getAttribute('aria-current')==='true'){e.preventDefault();return;}
+    e.preventDefault();
+    var box=a.closest('.lg');box.classList.add('is-sw');box.style.setProperty('--p',lang==='en'?1:0);
+    setTimeout(function(){location.href=a.getAttribute('href');},260);
+  });
+  try{
+    var saved=localStorage.getItem('fp-lang');
+    if(!saved&&/^\/(index\.html)?$/.test(location.pathname)&&/^en/i.test(navigator.language||'')){
+      localStorage.setItem('fp-lang','en');location.replace('/en/');
+    }else if(!saved){localStorage.setItem('fp-lang',/^\/en(\/|$)/.test(location.pathname)?'en':'es');}
+  }catch(_){}
+  wire();
+  if('MutationObserver' in window){new MutationObserver(wire).observe(document.documentElement,{childList:true,subtree:true});}
+})();
+</script>
+</helmet>
+
+<div style="background:#fbfbfd;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+
+  <nav style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;max-width:1360px;margin:0 auto;padding:22px 40px;background:rgba(251,251,253,0.8);backdrop-filter:blur(12px)">
+    <a href="Portfolio Landing.dc.html" style="color:#1d1d1f;font-weight:600;font-size:19px;letter-spacing:-0.01em">← Franco Preci</a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="Portfolio Landing.dc.html#work" style="color:#1d1d1f;font-size:16px;font-weight:500">Ver todos los proyectos</a>
+      <div class="lg" role="group" aria-label="Idioma / Language"><a href="/" data-lang="es" lang="es">ES</a><a href="/en/" data-lang="en" lang="en" aria-current="true">EN</a></div>
+    </div>
+  </nav>
+
+  <section style="max-width:840px;margin:0 auto;padding:80px 24px 40px">
+    <div style="font-size:13px;font-weight:600;color:#86868b;letter-spacing:0.02em;margin-bottom:14px">BODY HEALTH · NEW BHS202 · 2019 — 2024</div>
+    <h1 style="font-size:44px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;margin:0 0 18px">Un solo sistema operativo para toda una línea de equipos estéticos</h1>
+    <p style="font-size:19px;line-height:1.5;color:#6e6e73;margin:0 0 32px">Cuatro terapias, dos tamaños de pantalla y usuarias que aprendían el equipo leyendo el manual. El rediseño integral de hardware y software que unificó toda la línea, reconocido con el Sello de Buen Diseño de Argentina.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;padding:24px 0;border-top:1px solid #e5e5ea">
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Rol</div><div style="font-size:15px;font-weight:500">Product Designer Sr.</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Empresa</div><div style="font-size:15px;font-weight:500">Body Health</div></div>
+      <div><div style="font-size:12px;color:#86868b;margin-bottom:4px">Herramientas</div><div style="font-size:15px;font-weight:500">Figma · Illustrator</div></div>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:0 24px 64px">
+    <div style="border-radius:24px;overflow:hidden;height:520px;background:#f5f5f7">
+      <img src="/assets/bhg-hero.png" alt="Pantallas del sistema operativo Unyque: selección de terapia, zonas del cuerpo y configuración de tratamiento" style="width:100%;height:100%;object-fit:cover;display:block">
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:0 24px 80px">
+    <div class="stat-grid" id="stats">
+      <article class="stat" style="--ci:0">
+        <div class="num" role="img" aria-label="20"><span class="dg" style="--to:2;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">entrevistas de investigación</p>
+        <div class="viz viz-people" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i><i style="--k:13"></i><i style="--k:14"></i><i style="--k:15"></i><i style="--k:16"></i><i style="--k:17"></i><i style="--k:18"></i><i style="--k:19"></i></div>
+      </article>
+      <article class="stat" style="--ci:1">
+        <div class="num" role="img" aria-label="32"><span class="dg" style="--to:3;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:2;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">pantallas diseñadas</p>
+        <div class="viz viz-screens" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i></div>
+      </article>
+      <article class="stat" style="--ci:2">
+        <div class="num" role="img" aria-label="2"><span class="dg" style="--to:2;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">tamaños de pantalla (12" 16:10 y 14" 16:9)</p>
+        <div class="viz viz-sizes" aria-hidden="true">
+          <figure><span class="frame a">12"</span></figure>
+          <figure><span class="frame b">14"</span></figure>
+        </div>
+      </article>
+      <article class="stat" style="--ci:3">
+        <div class="num" role="img" aria-label="20"><span class="dg" style="--to:2;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+        <p class="label">tests de usabilidad</p>
+        <div class="viz viz-ring" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i><i style="--k:10"></i><i style="--k:11"></i><i style="--k:12"></i><i style="--k:13"></i><i style="--k:14"></i><i style="--k:15"></i><i style="--k:16"></i><i style="--k:17"></i><i style="--k:18"></i><i style="--k:19"></i><svg viewBox="0 0 26 26"><path d="M5 13.5l5.5 5.5L21 7.5"/></svg></div>
+      </article>
+    </div>
+  </section>
+
+  <section style="max-width:840px;margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:64px">
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Overview</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Body Health fabrica equipos de estética profesional. Para su nueva línea el objetivo no era maquillar la pantalla existente: había que repensar el gabinete, los aplicadores y el sistema operativo como un mismo producto, capaz de sostener cuatro terapias distintas —CryoFrequency, HImFU, Enygma y ReFreeze— sin que cada una se comportara como un aparato diferente.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Entré como Product Designer Sr. a cargo de la investigación y de las decisiones de producto: qué variables debía controlar el usuario, cómo se aprendía el equipo sin manual, qué tenía que ser preestablecido y qué manual, y cómo un mismo sistema podía servir a una médica esteticista y a una cosmetóloga que alquila el equipo por temporada. La UI fue la consecuencia de esas definiciones, no el punto de partida.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Empatizar</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Arranqué por escuchar a quienes ya usaban el equipo. Primero una encuesta a clientes actuales para entender qué valoraban y qué cambiarían, y después entrevistas en profundidad con usuarias y potenciales compradoras. Lo que apareció no fue un problema estético: era un problema de comprensión.</p>
+      <div class="stat-grid pct-grid" style="margin-bottom:28px">
+        <article class="stat" style="--ci:0">
+          <div class="num" role="img" aria-label="50%"><span class="dg" style="--to:5;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">no podía diferenciar niveles de importancia en la información en pantalla</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:50"></i></span></div>
+        </article>
+        <article class="stat" style="--ci:1">
+          <div class="num" role="img" aria-label="30%"><span class="dg" style="--to:3;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:0;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">no encontraba la información donde la esperaba</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:30"></i></span></div>
+        </article>
+        <article class="stat" style="--ci:2">
+          <div class="num" role="img" aria-label="82%"><span class="dg" style="--to:8;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:2;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">quería controlar más variables durante la terapia, incluida la zona del cuerpo</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:82"></i></span></div>
+        </article>
+        <article class="stat" style="--ci:3">
+          <div class="num" role="img" aria-label="75%"><span class="dg" style="--to:7;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:5;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="sym" aria-hidden="true">%</span></div>
+          <p class="label">recurría habitualmente al manual de usuario</p>
+          <div class="viz viz-bar" aria-hidden="true"><span class="track"><i class="fill" style="--pct:75"></i></span></div>
+        </article>
+      </div>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">Las preferencias de interfaz terminaron de ordenar el rumbo: un 70% pedía más color en pantalla, y sobre el tamaño ideal el 62% eligió 14" frente a un 26% que prefería 10" y un 12% que quería 20". Sobre qué controlar durante la sesión, el 48% quería potencia, tiempo y zona del cuerpo; el 42% tiempo y sesión; y solo un 10% se conformaba con el tiempo. Y en configuración de tratamientos apareció la tensión central del proyecto: el 50% pedía modos preestablecidos por terapia, el 38% quería controlar tantas variables como fuera posible y apenas un 12% estaba conforme con el sistema actual.</p>
+
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Definir</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">Con el material en la mesa agrupé los hallazgos en pain points concretos y los volví criterios de decisión para el resto del proyecto.</p>
+      <ul class="def-pains def-r" style="margin-bottom:32px">
+        <li class="def-pain" style="--i:0"><span class="n">01</span>Lenguaje demasiado técnico</li>
+        <li class="def-pain" style="--i:1"><span class="n">02</span>Sin soporte dentro del sistema</li>
+        <li class="def-pain" style="--i:2"><span class="n">03</span>Interfaz poco intuitiva</li>
+        <li class="def-pain" style="--i:3"><span class="n">04</span>Jerarquía de información confusa</li>
+        <li class="def-pain" style="--i:4"><span class="n">05</span>Sin patrones estándar, difícil de aprender</li>
+        <li class="def-pain" style="--i:5"><span class="n">06</span>Poca adaptabilidad entre tipos de usuario</li>
+        <li class="def-pain" style="--i:6"><span class="n">07</span>Pérdida de tiempo al programar el equipo</li>
+        <li class="def-pain" style="--i:7"><span class="n">08</span>Sin pantallas de servicio técnico</li>
+      </ul>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">De ahí salieron dos user personas que usé como filtro en cada definición posterior.</p>
+      <div class="def-personas def-r" style="margin-bottom:28px">
+        <article class="def-p" style="--ci:0">
+          <header class="def-head">
+            <span class="def-av" style="background:#f9eaef" aria-hidden="true"><img class="def-img" src="/assets/avatar-carolina.jpg" alt="" width="400" height="400" loading="lazy"></span>
+            <div>
+              <h3>Dra. Carolina Ruiz</h3>
+              <div class="def-meta">
+                <span class="def-chip" style="--k:0" role="img" aria-label="39 años"><span class="def-age" aria-hidden="true"><span class="dg" style="--to:3"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:9"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>años</span>
+                <span class="def-chip" style="--k:1">CABA</span>
+                <span class="def-chip" style="--k:2">Médica esteticista</span>
+              </div>
+            </div>
+          </header>
+          <section class="def-blk" style="--b:0">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <h4>Quiere</h4>
+            <p>Delegar el uso del equipo en personal no médico, ofrecer tratamientos personalizados y llevar registro de las tareas de su clínica.</p>
+          </section>
+          <section class="def-blk" style="--b:1">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6v8M12 18.2v.1"/></svg></span>
+            <h4>Le frustra</h4>
+            <p>No poder explicar el equipo fácilmente, no poder guardar programas y la falta de actualizaciones.</p>
+          </section>
+        </article>
+        <article class="def-p alt" style="--ci:1">
+          <header class="def-head">
+            <span class="def-av" style="background:#dbeef9" aria-hidden="true"><img class="def-img" src="/assets/avatar-gladis.jpg" alt="" width="400" height="400" loading="lazy"></span>
+            <div>
+              <h3>Gladis Rito</h3>
+              <div class="def-meta">
+                <span class="def-chip" style="--k:0" role="img" aria-label="45 años"><span class="def-age" aria-hidden="true"><span class="dg" style="--to:4"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:5"><span class="strip"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span>años</span>
+                <span class="def-chip" style="--k:1">Junín</span>
+                <span class="def-chip" style="--k:2">Cosmetóloga, alquila el equipo</span>
+              </div>
+            </div>
+          </header>
+          <section class="def-blk" style="--b:0">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <h4>Quiere</h4>
+            <p>Terapias consistentes entre sí, tratamientos rápidos y equipos intuitivos que pueda usar desde el primer día.</p>
+          </section>
+          <section class="def-blk" style="--b:1">
+            <span class="def-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6v8M12 18.2v.1"/></svg></span>
+            <h4>Le frustra</h4>
+            <p>Perder tiempo leyendo manuales y no contar con programas inteligentes ni asistencia dentro del equipo.</p>
+          </section>
+        </article>
+      </div>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">Con eso definí los objetivos de producto: simplificar el lenguaje técnico y permitir consultar el manual desde el propio dispositivo, reducir el tiempo de configuración, construir un sistema que sirva tanto al operador experto —con control manual— como al nuevo, con modos preestablecidos, sumar conectividad a internet para actualizaciones remotas y dejar una interfaz escalable a toda la línea, con lugar para tratamientos futuros.</p>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Idear</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">Antes de dibujar pantallas puse el foco en entender qué esperaban las usuarias que el equipo hiciera. La mayoría venía de trabajar con la línea anterior: ya tenían un modelo mental armado, gestos incorporados y una manera de nombrar las cosas. Romper eso por completo las hubiera obligado a reaprender el equipo; sostenerlo tal cual hubiera arrastrado los mismos problemas.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 24px">La dirección fue conservar lo que ya sabían y resolver, uno por uno, los pain points detectados: lenguaje más simple, jerarquía clara, patrones reconocibles y soporte dentro del sistema. En paralelo trabajé el moodboard para definir qué queríamos que el equipo transmitiera: cercanía, precisión y tecnología amable, más cerca de un objeto de consumo —parlantes, termostatos, wearables— que de un aparato médico. Esa intención guió después la paleta, los materiales y el tratamiento de la interfaz.</p>
+      <div style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e5e5ea">
+        <img src="/assets/bhg-moodboard.png" alt="Moodboard de referencias de tecnología de consumo: parlantes, termostatos y dispositivos personales" style="width:100%;display:block">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Moodboard: la percepción buscada para el equipo —cálido, preciso y familiar.</div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Prototipar</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Los primeros sketches los trabajé en papel junto al equipo médico y a clientes, para mapear el flujo completo antes de invertir tiempo en pantallas. Esa instancia definió el recorrido que después sostuvo todo el sistema.</p>
+      <div class="flow-wrap" style="margin-bottom:28px"><ol class="flow flow-r">
+        <li class="flow-s" style="--i:0"><div class="flow-h"><span class="flow-n" role="img" aria-label="01"><span class="dg" style="--to:0;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:1;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span><span class="flow-l" aria-hidden="true"><i></i><b></b></span></div>
+          <p class="flow-t">Seleccionar la terapia —HImFU, Enygma, CryoFrequency o ReFreeze— desde la pantalla principal</p>
+          <div class="flow-v v-thr" aria-hidden="true"><i></i><i class="pick"></i><i></i><i></i></div></li>
+        <li class="flow-s" style="--i:1"><div class="flow-h"><span class="flow-n" role="img" aria-label="02"><span class="dg" style="--to:0;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:2;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span><span class="flow-l" aria-hidden="true"><i></i><b></b></span></div>
+          <p class="flow-t">Elegir zona y tipo de cuerpo con diagramas corporales frontal/posterior, masculino/femenino</p>
+          <div class="flow-v v-body" aria-hidden="true">
+            <svg viewBox="0 0 44 74"><circle class="b" cx="22" cy="10" r="8"/><rect class="b" x="4" y="22" width="36" height="46" rx="16"/><ellipse class="z" cx="22" cy="46" rx="9" ry="8"/></svg>
+            <svg viewBox="0 0 44 74"><circle class="b" cx="22" cy="10" r="8"/><rect class="b" x="4" y="22" width="36" height="46" rx="16"/><ellipse class="z" cx="22" cy="40" rx="9" ry="9"/></svg>
+            <div class="tg"><i class="on"></i><i></i></div></div></li>
+        <li class="flow-s" style="--i:2"><div class="flow-h"><span class="flow-n" role="img" aria-label="03"><span class="dg" style="--to:0;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:3;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span><span class="flow-l" aria-hidden="true"><i></i><b></b></span></div>
+          <p class="flow-t">Configurar las variables del tratamiento: potencia, temperatura y profundidad</p>
+          <div class="flow-v v-var" aria-hidden="true"><span><b style="--v:72;--k:0"></b></span><span><b style="--v:46;--k:1"></b></span><span><b style="--v:88;--k:2"></b></span></div></li>
+        <li class="flow-s" style="--i:3"><div class="flow-h"><span class="flow-n" role="img" aria-label="04"><span class="dg" style="--to:0;--di:0"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg" style="--to:4;--di:1"><span class="strip" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></span><span class="flow-l" aria-hidden="true"><i></i><b></b></span></div>
+          <p class="flow-t">Iniciar la sesión con el temporizador activo y los controles a mano</p>
+          <div class="flow-v v-tim" aria-hidden="true">
+            <svg viewBox="0 0 66 66"><circle class="rg" cx="33" cy="33" r="22"/><circle class="pg" cx="33" cy="33" r="22"/><path class="pl" d="M29 25.5v15l12-7.5z"/></svg>
+            <div class="ct"><i></i><i></i></div></div></li>
+      </ol></div>
+      <div style="border-radius:20px;overflow:hidden;border:1px solid #e0e0e5">
+        <img src="/assets/bhg-flow.png" alt="User flow completo del dispositivo y sketches en papel de las pantallas" style="width:100%;display:block">
+      </div>
+      <div style="font-size:13px;color:#86868b;margin-top:10px">Del sketch en papel al flujo: terapia → zona del cuerpo → variables → sesión.</div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">Grillas para dos pantallas</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Con el flujo definido bajé la estructura a los dos formatos que había que resolver en simultáneo: el equipo principal, con tablet de 14" en 16:9, y el equipo "hijo", con tablet de 12" en 16:10. Adapté la grilla entre ambos para que los componentes fueran exactamente los mismos y solo cambiara la respiración —nunca la jerarquía ni el recorrido. Esa decisión es la que después permitió que toda la línea compartiera un mismo sistema operativo.</p>
+      <div>
+        <div style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e5e5ea">
+          <img src="/assets/bhg-grids.png" alt="Grillas de 6 columnas para los dos formatos: tablet 1920×1080 y tablet 1280×800" style="width:100%;display:block">
+        </div>
+        <div style="font-size:13px;color:#86868b;margin-top:10px">Seis columnas en ambos formatos: 375 px de columna y 40 px de gutter en 1920×1080, 158 px y 25 px en 1280×800.</div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:0 0 12px">El design system</h3>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Armé el sistema de componentes que sostiene las cuatro terapias: estados de iniciar y detener tratamiento, controles de sesión —temporizador, profundidad, potencia y temperatura—, diagramas corporales, tipografía, escala y las animaciones de cada interacción. Todo pensado para que sumar una terapia nueva sea ensamblar piezas existentes y no rediseñar pantallas.</p>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div>
+          <div style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e5e5ea">
+            <video class="bhg-panel-video" poster="assets/panel-poster.png" autoplay muted loop playsinline preload="auto" style="width:100%;display:block">
+              <source src="/assets/panel-animado-lento.webm" type="video/webm">
+              <source src="/assets/panel-animado-lento.mp4" type="video/mp4">
+            </video>
+            <img src="/assets/bhg-ds-components.png" alt="Componentes del design system: temporizador, temperatura, profundidad, potencia, botones y diagramas corporales" class="bhg-panel-fallback" style="width:100%;display:none">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">Componentes, estados y controles de sesión.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Testear</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">Validé el sistema con 20 tests de usabilidad sobre las 32 pantallas diseñadas, en los dos tamaños de pantalla. El foco estuvo en las tareas que la investigación había marcado como críticas: configurar un tratamiento sin abrir el manual, entender la jerarquía de la pantalla de sesión y moverse entre modo preestablecido y control manual sin perder el hilo.</p>
+
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Resultado</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">La línea Unyque quedó con un sistema operativo único y consistente: las cuatro terapias comparten estructura, componentes y vocabulario, y el equipo puede sumar tratamientos futuros sin rediseñar desde cero. La misma interfaz funciona en 12" y en 14", y convive el uso experto con el modo preestablecido que pedía la mitad de las clientas.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 28px">El proyecto —gabinetes, aplicadores e interfaz— recibió el Sello de Buen Diseño de Argentina.</p>
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <div>
+          <div>
+            <img src="/assets/bhg-ui-home.png" alt="Pantalla principal del sistema Unyque con las cuatro terapias: CryoFrequency, HImFU, ReFreeze y Enygma" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">Pantalla principal: las cuatro terapias en un mismo punto de entrada.</div>
+        </div>
+        <div>
+          <div>
+            <img src="/assets/bhg-ui-body-areas.png" alt="Selección de zona a tratar con diagramas corporales frontal y posterior, masculino y femenino" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">Diagramas corporales: zona y tipo de cuerpo, frontal y posterior.</div>
+        </div>
+        <div>
+          <div>
+            <img src="/assets/bhg-ui-config-himfu-enygma.png" alt="Pantallas de configuración de HImFU y Enygma: potencia VAC, tejido, led, modo de uso y temporizador" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">HImFU y Enygma: cada terapia ensambla los mismos componentes con sus propias variables.</div>
+        </div>
+        <div>
+          <div>
+            <img src="/assets/bhg-ui-config-refreeze-cryo.png" alt="Pantallas de configuración de ReFreeze y CryoFrequency: potencia, CryoCooling, profundidad y temporizador" style="width:100%;display:block">
+          </div>
+          <div style="font-size:13px;color:#86868b;margin-top:10px">ReFreeze y CryoFrequency: las mismas variables, la misma jerarquía, en los dos formatos de pantalla.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:28px;font-weight:700;letter-spacing:-0.01em;margin:0 0 14px">Aprendizajes</h2>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0 0 20px">El dato más incómodo de la investigación fue el más útil: la mitad de las clientas quería modos preestablecidos y casi cuatro de cada diez querían controlar todo. Resolver eso como una decisión de producto —dos modos conviviendo en un mismo flujo— en lugar de promediar preferencias fue lo que hizo escalable al sistema.</p>
+      <p style="font-size:17px;line-height:1.6;color:#3c3c41;margin:0">También confirmé que en hardware el diseño no termina en la pantalla: trabajar el software junto con el gabinete y los aplicadores, y sentarme con el equipo médico desde el sketch en papel, evitó decisiones de interfaz que después no hubieran tenido dónde apoyarse físicamente.</p>
+    </div>
+
+  </section>
+
+  <section style="background:#1d1d1f;color:#fff;padding:80px 24px;text-align:center">
+    <h2 style="font-size:32px;font-weight:700;letter-spacing:-0.01em;margin:0 0 24px">¿Seguimos la conversación?</h2>
+    <a href="Portfolio Landing.dc.html#contact" style="background:#5b4fd6;color:#fff;padding:14px 30px;border-radius:10px;font-weight:600;font-size:16px;display:inline-block">Contactarme</a>
+  </section>
+
+  <footer style="max-width:1120px;margin:0 auto;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#86868b">
+    <span>© 2026 Franco Preci</span>
+    <a href="Portfolio Landing.dc.html#work" style="color:#86868b">Otros proyectos →</a>
+  </footer>
+
+</div>
+
+</x-dc>
+
+</body>
+</html>
