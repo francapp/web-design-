@@ -274,8 +274,10 @@
 .cb i{display:block;height:100%;width:calc(var(--pct) * 1%);border-radius:99px;background:linear-gradient(90deg,var(--tint-2),var(--accent));transform-origin:left;
   transition:transform calc(1.3s * var(--sp)) cubic-bezier(.16,1,.3,1) calc((1300 + var(--k) * 90) * 1ms * var(--sp))}
 .bm-key{display:flex;gap:18px;flex-wrap:wrap;padding:14px clamp(8px,1vw,14px) 4px;font-size:12.5px;color:var(--muted)}
-.bm-key span{display:inline-flex;align-items:center;gap:8px}
-.bm-key .no,.bm-key .ok{width:16px}
+.bm-key>span{display:inline-flex;align-items:center;gap:8px}
+.bm-key .ok,.bm-key .no{width:20px}
+.bm-key .gap{display:grid;place-items:center}
+.bm-key .gap .no::after{display:none}
 /* ===== Citas ===== */
 .qt-g{--gap:clamp(12px,1.6vw,22px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
 .qt{--i:0;position:relative;display:flex;flex-direction:column;gap:16px;min-width:0;padding:clamp(20px,2.2vw,28px);background:var(--card);border:1px solid var(--line);border-radius:28px;
